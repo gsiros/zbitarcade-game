@@ -13,4 +13,5 @@ int main() {
 	setUpdateFunction(update);
 	startMessageLoop();
 	return 0;
+	// Deleted test class.
 }
