@@ -9,9 +9,9 @@ struct Game {
 
 void draw() {
 	Brush br;
-	//br.fill_opacity = 1;
+	br.fill_opacity = 1;
 	br.outline_opacity = 0;
-	br.texture = "assets\\test1";
+	br.texture = "assets\\fish.png";
 	drawRect(250, 250, 500, 500, br);
 }
 void update(float ms) {}
