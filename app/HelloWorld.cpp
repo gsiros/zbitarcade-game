@@ -3,18 +3,23 @@
 
 using namespace graphics;
 
+struct Game {
+
+};
+
 void draw() {
-	graphics::Brush br;
+	Brush br;
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
 	br.texture = "test1.png";
-	drawRect(250, 250, 100, 100, br);
+	drawRect(250, 250, 500, 500, br);
 }
 void update(float ms) {}
 
 int main() {
-
+	Game* g = new Game();
 	createWindow(500, 500, "Hello World!");
+	setUserData(&g);
 	setDrawFunction(draw);
 	setUpdateFunction(update);
 	startMessageLoop();
