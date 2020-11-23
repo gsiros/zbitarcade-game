@@ -145,7 +145,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coomer.cpp" />
     <ClCompile Include="HelloWorld.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Coomer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
