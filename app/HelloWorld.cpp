@@ -33,7 +33,7 @@ void drawRock() {
 }
 
 void drawProjectile() {
-	
+
 	if (ok && ok_spacecraft) {
 		SpaceInvaders* dummy = (SpaceInvaders*)getUserData();
 		Brush br;
@@ -41,12 +41,12 @@ void drawProjectile() {
 		br.fill_color[0] = 1.0f;
 		br.fill_color[1] = 0.0f;
 		br.fill_color[2] = 0.0f;
-		drawRect(dummy->projectile_x, dummy->projectile_y-50, 5, 10, br);
+		drawRect(dummy->projectile_x, dummy->projectile_y - 50, 5, 10, br);
 	}
 }
 
-void drawShip(){
-	
+void drawShip() {
+
 	if (ok_spacecraft) {
 		SpaceInvaders* dummy = (SpaceInvaders*)getUserData();
 		Brush br;
@@ -62,7 +62,7 @@ void draw() {
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
 	br.texture = "assets\\galaxyBG.png";
-	drawRect(350,250, 700, 500, br);
+	drawRect(350, 250, 700, 500, br);
 	drawShip();
 	drawProjectile();
 	drawRock();
@@ -73,7 +73,7 @@ void update(float ms) {
 	SpaceInvaders* si = (SpaceInvaders*)getUserData();
 
 	// Handle Projectile x Rock collision:
-	if (ok && ok_rock && abs(si->projectile_y - si->rock_y)<70 && abs(si->projectile_x - si->rock_x) < 20) {
+	if (ok && ok_rock && abs(si->projectile_y - si->rock_y) < 70 && abs(si->projectile_x - si->rock_x) < 20) {
 		playSound("assets\\boom.mp3", 1);
 		ok = false;
 		si->rock_x = rand() % 750 + 1;
@@ -88,7 +88,7 @@ void update(float ms) {
 		ok_rock = false;
 		ok_spacecraft = false;
 		stopMusic();
-		playSound("assets\\crash.mp3",1);
+		playSound("assets\\crash.mp3", 1);
 	}
 
 	MouseState m;
@@ -99,11 +99,11 @@ void update(float ms) {
 		si->projectile_y = si->y_of_SpaceCraft;
 		ok = true;
 	}
-	else if(m.button_right_pressed) {
+	else if (m.button_right_pressed) {
 		si->rock_x = rand() % 750 + 1;
 		si->rock_y = -60;
 		si->rock_size = rand() % 50 + 30;
-		si->rock_speed = ((rand() % 9 + 1) * 0.1)+0.5;
+		si->rock_speed = ((rand() % 9 + 1) * 0.1) + 0.5;
 		ok_rock = true;
 	}
 
@@ -119,7 +119,7 @@ void update(float ms) {
 	}
 
 
-	if (ok && si->projectile_y<500) {
+	if (ok && si->projectile_y < 500) {
 		si->projectile_y -= 7;
 	}
 	else if (si->projectile_y > 500) {
@@ -128,18 +128,18 @@ void update(float ms) {
 
 	if (getKeyState(SCANCODE_W))
 	{
-		if (si->y_of_SpaceCraft-50==0) {
-		
+		if (si->y_of_SpaceCraft - 50 == 0) {
+
 		}
 		else {
 			si->y_of_SpaceCraft -= 2;
 		}
-		
+
 	}
 
 	if (getKeyState(SCANCODE_S))
 	{
-		if (si->y_of_SpaceCraft +50 == 500) {
+		if (si->y_of_SpaceCraft + 50 == 500) {
 
 		}
 		else {
@@ -149,11 +149,12 @@ void update(float ms) {
 
 	if (getKeyState(SCANCODE_A))
 	{
-		if (si->x_of_SpaceCraft -50 == 0) {
-		} else {
+		if (si->x_of_SpaceCraft - 50 == 0) {
+		}
+		else {
 			si->x_of_SpaceCraft -= 2;
 		}
-		
+
 	}
 
 	if (getKeyState(SCANCODE_D))
@@ -169,12 +170,12 @@ void update(float ms) {
 int main() {
 	// testing the sgg lib
 	SpaceInvaders* si = new SpaceInvaders();
-	
-	createWindow(700, 500, "Space Invaders");	
+
+	createWindow(700, 500, "Space Invaders");
 	setUserData(si);
 	setDrawFunction(draw);
 	setUpdateFunction(update);
-	playMusic("assets\\action52.mp3",.8);
+	playMusic("assets\\action52.mp3", .8);
 	startMessageLoop();
 	destroyWindow();
 	return 0;
