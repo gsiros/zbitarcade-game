@@ -14,6 +14,7 @@ struct SpaceInvaders {
 	float y_of_SpaceCraft = 250;
 	float projectile_speed = 0.5;
 	float projectile_x, projectile_y;
+	// Rock info:
 	float rock_x, rock_y;
 	float rock_speed;
 	float rock_size;
