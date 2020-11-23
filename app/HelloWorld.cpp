@@ -14,4 +14,5 @@ int main() {
 	startMessageLoop();
 	return 0;
 	// Deleted test class.
+	// new comment
 }
