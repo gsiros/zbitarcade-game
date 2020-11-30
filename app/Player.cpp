@@ -21,22 +21,6 @@ void Player::setAssetFile(const string name){
 	asset_file = name;
 }
 
-void Player::setCenter_x(float cord_x) {
-	center_x = cord_x;
-}
-
-void Player::setCenter_y(float cord_y) {
-	center_y = cord_y;
-}
-
-float Player::getCenter_x() {
-	return center_x;
-}
-
-float Player::getCenter_y() {
-	return center_y;
-}
-
 float Player::getHp() {
 	return hp;
 }
