@@ -5,10 +5,10 @@
 Player::Player(float center_x, float center_y){
 		this->center_x = center_x;
 		this->center_y = center_y;
-		width = 50.0f;
-		height = 100.0f;
+		width = 80.0f;
+		height = 150.0f;
 		hp = 100.0f;
-		setAssetFile("assets\\fish.png");
+		setAssetFile("assets\\Goku1.png");
 }
 
 string Player::getAssetFile() {
