@@ -1,6 +1,7 @@
 #include <iostream>
 #include <graphics.h>
 #include "Player.h"
+#include "Vect.h"
 
 using namespace graphics;
 
@@ -12,6 +13,8 @@ public:
 	float window_height = 500;
 
 	Player player = Player(window_width/2, window_height/2);
+
+	Vect gravity = Vect(0, 5);
 };
 
 void drawPlayer() {
@@ -22,7 +25,7 @@ void drawPlayer() {
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
 	br.texture = userData->player.getAssetFile();
-	drawRect(userData->player.getCenter_x(),userData->player.getCenter_y(), userData->player.getWidth(), userData->player.getHeight(), br);
+	drawRect(userData->player.position.getX(),userData->player.position.getY(), userData->player.getWidth(), userData->player.getHeight(), br);
 }
 
 void draw() {
@@ -39,49 +42,47 @@ void draw() {
 void update(float ms) {
 
 	Game* userData = (Game*)getUserData();
-	/*if (userData->player.getCenter_y() + userData->player.getHeight() / 2 < userData->window_height)
-		userData->player.setCenter_y(userData->player.getCenter_y() + 0.01f * userData->player.getCenter_y());
-	else
-		userData->player.setCenter_y(userData->window_height - userData->player.getHeight()/2);
-	*/
-	// If 'SPACE' is pressed:
-	if (getKeyState(SCANCODE_SPACE)) {
+	
+
+	// If 'W' is pressed:
+	if (getKeyState(SCANCODE_W)) {
 		jump = true;
 	}
 
 	if (jump) {
-	// y_{n+1} = y_{n} - 0.01*y^2_{n}
-		userData->player.setCenter_y((userData->player.getCenter_y()) - 0.01f*(userData->player.getCenter_y())*(userData->player.getCenter_y()));
-		if (userData->player.getCenter_y() + userData->player.getHeight() / 2 > userData->window_height) {
-			jump = false;
-			userData->player.setCenter_y((userData->window_height - userData->player.getHeight()/2));
-		}
-	}
-
-	// If 'W' is pressed:
-	if (getKeyState(SCANCODE_W)) {
-		if (userData->player.getCenter_y() - userData->player.getHeight()/2 > 0)
-			userData->player.setCenter_y(userData->player.getCenter_y() - 2);	
+		userData->player.position = userData->player.position + userData->player.velocity * 0.15f;
+		userData->player.velocity = userData->player.velocity + userData->gravity * 0.15f;
 	}
 
 	// If 'S' is pressed:
 	if (getKeyState(SCANCODE_S)) {
-		if (userData->player.getCenter_y() + userData->player.getHeight()/2< userData->window_height)
-			userData->player.setCenter_y(userData->player.getCenter_y() + 1);
+		if (userData->player.position.getY() + userData->player.getHeight() / 2 < userData->window_height)
+			userData->player.position.setY(userData->player.position.getY() + 2);
+		else {
+			userData->player.position.setY(userData->window_height - userData->player.getHeight() / 2);
+		}
+			
 	}
 
 	// If 'A' is pressed:
 	if (getKeyState(SCANCODE_A)) {
-		if (userData->player.getCenter_x() - userData->player.getWidth()/3 > 0)
-			userData->player.setCenter_x(userData->player.getCenter_x() - 1);
+		if (userData->player.position.getX() - userData->player.getWidth() / 3 > 0)
+			userData->player.position.setX(userData->player.position.getX() - 1.5);
 	}
 
 	// If 'D' is pressed:
 	if (getKeyState(SCANCODE_D)) {
-		if (userData->player.getCenter_x() + userData->player.getWidth()/3 < userData->window_width)
-			userData->player.setCenter_x(userData->player.getCenter_x() + 1);
+		if (userData->player.position.getX() + userData->player.getWidth()/3 < userData->window_width)
+			userData->player.position.setX(userData->player.position.getX() + 1.5);
 	}
 	
+	if (userData->player.position.getY() + userData->player.getHeight() / 2 >= userData->window_height)
+	{
+		userData->player.position.setY(userData->window_height - userData->player.getHeight() / 2);
+		jump = false;
+		userData->gravity = Vect(0,5);
+		userData->player.velocity = Vect(0,-40);
+	}
 	
 }
 
@@ -93,5 +94,6 @@ int main() {
 	setUpdateFunction(update);
 	startMessageLoop();
 	destroyWindow();
+
 	return 0;
 }

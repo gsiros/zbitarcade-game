@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-
+#include "Vect.h"
 
 using namespace std;
 
@@ -20,6 +20,8 @@ private:
 	string asset_file;
 
 public:
+	Vect position;
+	Vect velocity;
 
 	Player(float center_x, float center_y);
 
