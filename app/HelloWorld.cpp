@@ -50,8 +50,6 @@ void drawProjectile() {
 	br.outline_opacity = 0;
 	br.texture = userData->proj.getAssetFile();
 	drawRect(userData->proj.position.getX(),userData->proj.position.getY(), userData->proj.getWidth(), userData->proj.getHeight(), br);
-	drawRect(userData->proj.position.getX()+100,userData->proj.position.getY()+100, userData->proj.getWidth()+100, userData->proj.getHeight()+100, br);
-
 }
 
 void draw() {
