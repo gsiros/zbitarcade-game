@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
+#include <list>
+#include "Character.h"
 #include "Vect.h"
+#include "Projectile.h"
 
 using namespace std;
 
@@ -11,25 +14,10 @@ using namespace std;
 
 */
 
-class Player
-{
+class Player : public Character {
 private:
-	float center_x, center_y;
-	float width, height;
-	float hp;
-	string asset_file;
-
+	list<Projectile> projectile_list;
 public:
-	Vect position;
-	Vect velocity;
-
-	Player(float center_x, float center_y);
-
-	float getWidth();
-	float getHeight();
-	float getHp();
-	string getAssetFile();
-	void setAssetFile(string const name);
-
+	Player(float width, float height, float center_x, float center_y, float hp, const string assetFile) : Character(width, height, center_x, center_y, hp, assetFile) {}
 };
 
