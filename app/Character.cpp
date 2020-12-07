@@ -2,7 +2,7 @@
 
 Character::Character(float width, float height, float center_x, float center_y, float hp, const string assetFile){
 		position = Vect(center_x, center_y);
-		velocity = Vect(0, -40);
+		velocity = Vect(0, -80);
 		this->width = width;
 		this->height = height;
 		this->hp = hp;
@@ -11,20 +11,19 @@ Character::Character(float width, float height, float center_x, float center_y, 
 		this->assetFile = asset_character_left;
 }
 
-
-float Character::getWidth() {
+float Character::getWidth() const {
 	return width;
 }
 
-float Character::getHeight() {
+float Character::getHeight() const {
 	return height;
 }
 
-float Character::getHp() {
+float Character::getHp() const {
 	return hp;
 }
 
-string Character::getAssetFile() {
+string Character::getAssetFile() const {
 	return assetFile;
 }
 

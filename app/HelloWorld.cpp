@@ -8,6 +8,8 @@
 #include "Vect.h"
 #include <list>
 
+#define MS_CAP 0.15f
+
 using namespace graphics;
 
 bool jump = false;
@@ -19,8 +21,14 @@ public:
 
 	Player player = Player (80,150,window_width - 40/2, window_height - 150/2, 100,"assets\\Goku");
 	Enemy enemy = Enemy(80, 150, 0, window_height - 150/2, 100, "assets\\Piccolo");
-	Projectile proj = Projectile(40,40,window_width/2,window_height/2, "assets\\Haduken");
 	Vect gravity = Vect(0, 5);
+
+	~Game() {
+		
+		for (list<Projectile*>::iterator it = player.projectile_list.begin(); it != player.projectile_list.end(); ++it) {
+			delete* it;
+		}
+	}
 };
 
 void drawPlayer() {
@@ -48,8 +56,12 @@ void drawProjectile() {
 	Brush br;
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
-	br.texture = userData->proj.getAssetFile();
-	drawRect(userData->proj.position.getX(),userData->proj.position.getY(), userData->proj.getWidth(), userData->proj.getHeight(), br);
+	for (list<Projectile*>::iterator it = userData->player.projectile_list.begin(); it != userData->player.projectile_list.end(); ++it) {
+		if (*it != nullptr) {
+			br.texture = (*it)->getAssetFile();
+			drawRect((*it)->position.getX(),(*it)->position.getY(), (*it)->getWidth(), (*it)->getHeight(), br);
+		}	
+	}
 }
 
 void draw() {
@@ -74,8 +86,8 @@ void update(float ms) {
 	}
 
 	if (jump) {
-		userData->player.position = userData->player.position + userData->player.velocity * 0.15f;
-		userData->player.velocity = userData->player.velocity + userData->gravity * 0.15f;
+		userData->player.position = userData->player.position + userData->player.velocity * MS_CAP;
+		userData->player.velocity = userData->player.velocity + userData->gravity * MS_CAP;
 	}
 
 	// If 'S' is pressed:
@@ -102,6 +114,34 @@ void update(float ms) {
 			userData->player.setAssetFileMoveRight();
 		}
 	}
+
+	// If "SPACEBAR" is pressed:
+	if (getKeyState(SCANCODE_SPACE)) {
+		if(userData->player.projectile_list.empty()) {
+			playSound("assets\\sounds\\fireball_sound_effect.mp3",0.1f, false);
+			userData->player.attack();
+			
+		} else if (abs(userData->player.projectile_list.back()->position.getX() - userData->player.position.getX()) > 50) {
+			playSound("assets\\sounds\\fireball_sound_effect.mp3",0.1f, false);
+			userData->player.attack();
+		}
+	}
+
+	for (list<Projectile*>::iterator it = userData->player.projectile_list.begin(); it != userData->player.projectile_list.end(); ++it) {
+		if (*it != nullptr) {
+			(*it)->move();
+		}		
+	}
+
+	for (list<Projectile*>::iterator it = userData->player.projectile_list.begin(); it != userData->player.projectile_list.end(); ++it) {
+		if (*it != nullptr) {
+			// Check if projectile collided with walls;
+			if ((*it)->keepProjectileInWindow(userData->player.projectile_list, userData->window_width, userData->window_height)) {
+				break;
+			}
+			
+		}		
+	}
 	
 	if (userData->player.position.getY() + userData->player.getHeight() / 2 >= userData->window_height)
 	{
@@ -123,5 +163,6 @@ int main() {
 	setUpdateFunction(update);
 	startMessageLoop();
 	destroyWindow();
+	delete game;
 	return 0;
 }

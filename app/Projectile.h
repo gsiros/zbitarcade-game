@@ -2,7 +2,7 @@
 #include <string>
 #include "Vect.h"
 #include "Character.h"
-
+#include <list>
 using namespace std;
 
 class Projectile {
@@ -16,12 +16,14 @@ public:
 	Vect position, velocity;
 
 	Projectile(float width, float height, float center_x, float center_y, const string assetFile);
-
-	float getWidth();
-	float getHeight();
-	string getAssetFile();
+	Projectile(const Projectile& p);
+	float getWidth() const;
+	float getHeight() const;
+	string getAssetFile() const;
 	void setAssetFile(string const name);
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();
+	void move();
+	bool keepProjectileInWindow(list<Projectile*> & projs, float windowWidth, float windowHeight);
 };
 

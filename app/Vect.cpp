@@ -7,9 +7,9 @@ Vect::Vect() {
 
 Vect::Vect(float x, float y): x(x), y(y) {}
 
-float Vect::getX() { return x; }
+float Vect::getX() const{ return x; }
 
-float Vect::getY() { return y; }
+float Vect::getY() const{ return y; }
 
 void Vect::setX(float x) { this->x = x; }
 

@@ -17,10 +17,10 @@ public:
 
 	Character(float width, float height, float center_x, float center_y, float hp, const string assetFile);
 
-	float getWidth();
-	float getHeight();
-	float getHp();
-	string getAssetFile();
+	float getWidth() const;
+	float getHeight() const;
+	float getHp() const;
+	string getAssetFile() const;
 	void setAssetFile(string const name);
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();	
