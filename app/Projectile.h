@@ -5,7 +5,7 @@
 #include <list>
 using namespace std;
 
-class Projectile {
+class Projectile : public Entity {
 protected:
 	float width, height;
 	string assetFile;
@@ -17,6 +17,11 @@ public:
 
 	Projectile(float width, float height, float center_x, float center_y, const string assetFile);
 	Projectile(const Projectile& p);
+
+	void init() override;
+	void draw() override;
+	void update() override;
+
 	float getWidth() const;
 	float getHeight() const;
 	string getAssetFile() const;
@@ -24,6 +29,6 @@ public:
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();
 	void move();
-	bool keepProjectileInWindow(list<Projectile*> & projs, float windowWidth, float windowHeight);
+	bool isInBounds();
 };
 

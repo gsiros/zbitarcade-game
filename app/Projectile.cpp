@@ -1,6 +1,10 @@
 #include "Projectile.h"
 #include <list>
+#include "Game.h"
+#include "graphics.h"
+
 using namespace std;
+using namespace graphics;
 	
 Projectile::Projectile(float width, float height, float center_x, float center_y, const string assetFile) {
 	this->width = width;
@@ -18,6 +22,25 @@ Projectile::Projectile(const Projectile& p) {
 	this->asset_projectile_left = string(p.asset_projectile_left);
 	this->asset_projectile_right = string(p.asset_projectile_right);
 	this->assetFile = string(p.assetFile);
+}
+
+void Projectile::init()
+{
+}
+
+void Projectile::draw()
+{
+	Brush br;
+	br.fill_opacity = 1;
+	br.outline_opacity = 0;
+	br.texture = assetFile;
+	drawRect(position.getX(), position.getY(), width, height, br);
+
+}
+
+void Projectile::update()
+{
+
 }
 
 float Projectile::getWidth() const {
@@ -52,16 +75,10 @@ void Projectile::move() {
 	}
 }
 
-bool Projectile::keepProjectileInWindow(list<Projectile*> & projs,float windowWidth, float windowHeight) {
-	if (position.getX() - getWidth() / 3 <= 0) {
-		projs.remove(this);
-		delete this;
-		return true;
+bool Projectile::isInBounds()
+{
+	if (position.getX() - width / 3 <= 0 || position.getX() + getWidth() / 3 > WINDOW_WIDTH) {
+		return false;
 	}
-	if (position.getX() + getWidth() / 3 > windowWidth) {
-		projs.remove(this);
-		delete this;
-		return true;
-	}
-	return false;
+	return true;
 }

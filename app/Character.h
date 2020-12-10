@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
 #include "Vect.h"
+#include "Entity.h"
 using namespace std;
 
-class Character {
+class Character : public Entity {
 
 protected:
 	float width, height;
@@ -16,6 +17,10 @@ public:
 	Vect position, velocity;
 
 	Character(float width, float height, float center_x, float center_y, float hp, const string assetFile);
+
+	void init() = 0;
+	void draw() = 0;
+	void update() = 0;
 
 	float getWidth() const;
 	float getHeight() const;

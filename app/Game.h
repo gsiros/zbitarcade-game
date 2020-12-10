@@ -1,9 +1,14 @@
 #pragma once
+#include "Metrics.h"
+#include "graphics.h"
+#include "Entity.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Vect.h"
 
-class Game {
+using namespace graphics;
+
+class Game : public Entity {
 public:
 	float window_width = 800;
 	float window_height = 500;
@@ -12,10 +17,11 @@ public:
 	Enemy enemy = Enemy(80, 150, 0, window_height - 150 / 2, 100, "assets\\Piccolo");
 	Vect gravity = Vect(0, 5);
 
-	~Game() {
+	Game();
+	~Game();
 
-		for (list<Projectile*>::iterator it = player.projectile_list.begin(); it != player.projectile_list.end(); ++it) {
-			delete* it;
-		}
-	}
+	void init() override;
+	void draw() override;
+	void update() override;
+
 };
