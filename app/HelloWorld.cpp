@@ -30,12 +30,10 @@ void update(float ms) {
 
 int main() {
 	Game* game = new Game();
-	// GAME INIT
 	game->init();
 	setUserData(game);
 	setDrawFunction(draw);
 	setUpdateFunction(update);
-	// END OF GAME INIT
 	startMessageLoop();
 	destroyWindow();
 	delete game;
