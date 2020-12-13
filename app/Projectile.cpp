@@ -2,10 +2,10 @@
 #include <list>
 #include "Game.h"
 #include "graphics.h"
-
+#include <iostream>
 using namespace std;
 using namespace graphics;
-	
+
 Projectile::Projectile(float width, float height, float center_x, float center_y, const string assetFile) {
 	this->width = width;
 	this->height = height;
@@ -40,7 +40,9 @@ void Projectile::draw()
 
 void Projectile::update()
 {
-
+	move();
+	keepInBounds();
+	checkCollisionWithEnemy();
 }
 
 float Projectile::getWidth() const {
@@ -69,16 +71,28 @@ void Projectile::setAssetFileMoveLeft() {
 
 void Projectile::move() {
 	if (assetFile == asset_projectile_left) {
-		position.setX(position.getX() - 3);
-	} else {
-		position.setX(position.getX() + 3);
+		position.setX(position.getX() - (getDeltaTime() / 2.f));
+	}
+	else {
+		position.setX(position.getX() + (getDeltaTime() / 2.f));
 	}
 }
 
-bool Projectile::isInBounds()
+void Projectile::keepInBounds()
 {
 	if (position.getX() - width / 3 <= 0 || position.getX() + getWidth() / 3 > WINDOW_WIDTH) {
-		return false;
+		active = false;
 	}
-	return true;
+}
+
+void Projectile::checkCollisionWithEnemy() {
+	list<Enemy*> enemies = reinterpret_cast<Game*>(getUserData())->enemy_list;
+	for (list<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it) {
+		// Check if collided with enemy:
+		if ((abs((*it)->position.getX() - position.getX()) < 30) && (abs((*it)->position.getY() - position.getY()) < 30)) {
+			// lower hp of enemy:
+			(*it)->setHp((*it)->getHp() - 25.f);
+			active = false;
+		}
+	}
 }

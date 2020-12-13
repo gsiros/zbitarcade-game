@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <list>
 #include "Metrics.h"
 #include "graphics.h"
 #include "Entity.h"
@@ -6,6 +8,7 @@
 #include "Enemy.h"
 #include "Vect.h"
 
+using namespace std;
 using namespace graphics;
 
 class Game : public Entity {
@@ -13,9 +16,11 @@ public:
 	float window_width = 800;
 	float window_height = 500;
 
-	Player player = Player(80, 150, window_width - 40 / 2, window_height - 150 / 2, 100, "assets\\Goku");
-	Enemy enemy = Enemy(80, 150, 0, window_height - 150 / 2, 100, "assets\\Piccolo");
-	Vect gravity = Vect(0, 5);
+	Player player = Player(CHARACTER_WIDTH, CHARACTER_HEIGHT, WINDOW_WIDTH - CHARACTER_WIDTH / 2,WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(GOKU));
+	//Enemy enemy = Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, 0, WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO));
+	Vect gravity = Vect(0, GRAVITY_PULL);
+
+	list<Enemy *> enemy_list;
 
 	Game();
 	~Game();

@@ -29,6 +29,7 @@ public:
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();
 	void move();
-	bool isInBounds();
+	void keepInBounds();
+	void checkCollisionWithEnemy();
 };
 

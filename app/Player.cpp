@@ -38,8 +38,8 @@ void Player::update()
 	}
 
 	if (jump) {
-		position = position + velocity * 0.15f;
-		velocity = velocity + game->gravity * 0.15f;
+		position = position + velocity * (getDeltaTime()/70.f);
+		velocity = velocity + game->gravity * (getDeltaTime()/70.f);
 	}
 
 	// If 'S' is pressed:
@@ -54,7 +54,7 @@ void Player::update()
 	// If 'A' is pressed:
 	if (getKeyState(SCANCODE_A)) {
 		if (position.getX() - width / 3 > 0) {
-			position.setX(position.getX() - 1.5);
+			position.setX(position.getX() - (getDeltaTime()/4.f));
 			setAssetFileMoveLeft();
 		}
 	}
@@ -62,7 +62,7 @@ void Player::update()
 	// If 'D' is pressed:
 	if (getKeyState(SCANCODE_D)) {
 		if (position.getX() + width / 3 < WINDOW_WIDTH) {
-			position.setX(position.getX() + 1.5);
+			position.setX(position.getX() + (getDeltaTime()/4.f));
 			setAssetFileMoveRight();
 		}
 	}
@@ -83,8 +83,8 @@ void Player::update()
 	// Projectiles movement:
 	for (list<Projectile*>::iterator it = projectile_list.begin(); it != projectile_list.end(); ++it) {
 		if (*it != nullptr) {
-			(*it)->move();
-			if (!(*it)->isInBounds()) {
+			(*it)->update();
+			if (!(*it)->getActiveStatus()) {
 				// TODO: what happens with garbage collection?
 				it = projectile_list.erase(it);
 				if (it == projectile_list.end())

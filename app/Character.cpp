@@ -38,3 +38,7 @@ void Character::setAssetFileMoveLeft() {
 void Character::setAssetFileMoveRight() {
 	assetFile = asset_character_right;
 }
+
+void Character::setHp(float hpPoints){
+	hp = hpPoints;
+}

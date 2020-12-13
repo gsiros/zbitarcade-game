@@ -26,6 +26,7 @@ public:
 	float getHeight() const;
 	float getHp() const;
 	string getAssetFile() const;
+	void setHp(float hpPoints);
 	void setAssetFile(string const name);
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();	
