@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Metrics.h"
 #include "graphics.h"
+#include <random>
 
 using namespace graphics;
 
@@ -21,7 +22,7 @@ Game::~Game() {
 void Game::init() {
 	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
 	player.init();
-	enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, 0, WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO)));
+	enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, 0, WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(PICCOLO)));
 }
 
 void Game::draw()
@@ -43,7 +44,12 @@ void Game::draw()
 }
 
 void Game::update()
-{
+{	
+
+	if(fmod(getGlobalTime(),1000.f) <= 1.f){
+		enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, 0 , WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(PICCOLO)));
+	}
+
 	for(list<Enemy *>::iterator it = enemy_list.begin(); it!=enemy_list.end(); ++it){
 		if(*it != nullptr){
 			if((*it)->getActiveStatus()){
