@@ -44,10 +44,10 @@ void Player::update()
 
 	// If 'S' is pressed:
 	if (getKeyState(SCANCODE_S)) {
-		if (position.getY() + height / 2 < WINDOW_HEIGHT)
+		if (position.getY() + height / 2 < CANVAS_HEIGHT)
 			position.setY(position.getY() + 2);
 		else {
-			position.setY(WINDOW_HEIGHT - height / 2);
+			position.setY(CANVAS_HEIGHT - height / 2);
 		}
 	}
 
@@ -61,7 +61,7 @@ void Player::update()
 
 	// If 'D' is pressed:
 	if (getKeyState(SCANCODE_D)) {
-		if (position.getX() + width / 3 < WINDOW_WIDTH) {
+		if (position.getX() + width / 3 < CANVAS_WIDTH) {
 			position.setX(position.getX() + (getDeltaTime()/4.f));
 			setAssetFileMoveRight();
 		}
@@ -93,9 +93,9 @@ void Player::update()
 		}
 	}
 
-	if (position.getY() + height / 2 >= WINDOW_HEIGHT)
+	if (position.getY() + height / 2 >= CANVAS_HEIGHT)
 	{
-		position.setY(WINDOW_HEIGHT - height / 2);
+		position.setY(CANVAS_HEIGHT - height / 2);
 		jump = false;
 		game->gravity = Vect(0, 5);
 		game->player.velocity = Vect(0, -40);

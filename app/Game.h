@@ -13,6 +13,7 @@ using namespace graphics;
 
 class Game : public Entity {
 public:
+	float timer;
 	float window_width = 800;
 	float window_height = 500;
 

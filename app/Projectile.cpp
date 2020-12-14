@@ -80,7 +80,7 @@ void Projectile::move() {
 
 void Projectile::keepInBounds()
 {
-	if (position.getX() - width / 3 <= 0 || position.getX() + getWidth() / 3 > WINDOW_WIDTH) {
+	if (position.getX() - width / 3 <= 0 || position.getX() + getWidth() / 3 > CANVAS_WIDTH) {
 		active = false;
 	}
 }
@@ -89,7 +89,7 @@ void Projectile::checkCollisionWithEnemy() {
 	list<Enemy*> enemies = reinterpret_cast<Game*>(getUserData())->enemy_list;
 	for (list<Enemy*>::iterator it = enemies.begin(); it != enemies.end(); ++it) {
 		// Check if collided with enemy:
-		if ((abs((*it)->position.getX() - position.getX()) < 30) && (abs((*it)->position.getY() - position.getY()) < 30)) {
+		if ((abs((*it)->position.getX() - position.getX()) < 30) && (abs((*it)->position.getY() - position.getY()) < (*it)->getHeight()/2)) {
 			// lower hp of enemy:
 			(*it)->setHp((*it)->getHp() - 25.f);
 			active = false;

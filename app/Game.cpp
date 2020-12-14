@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "Metrics.h"
 #include "graphics.h"
+#include <math.h>
 #include <random>
 
 using namespace graphics;
@@ -20,9 +21,12 @@ Game::~Game() {
 }
 
 void Game::init() {
+	timer = 0.f;
+	// DO NOT CHANGE TO CANVAS_WIDTH/_HEIGHT
 	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
+	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+	setCanvasScaleMode(CANVAS_SCALE_FIT);
 	player.init();
-	enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, 0, WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(PICCOLO)));
 }
 
 void Game::draw()
@@ -31,7 +35,7 @@ void Game::draw()
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
 	br.texture = "assets\\background.png";
-	drawRect(WINDOW_WIDTH/ 2, WINDOW_HEIGHT / 2, WINDOW_WIDTH, WINDOW_HEIGHT, br);
+	drawRect((CANVAS_WIDTH)/ 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	// Draw Entities:
 	//enemy.draw();
@@ -46,10 +50,10 @@ void Game::draw()
 void Game::update()
 {	
 
-	if(fmod(getGlobalTime(),1000.f) <= 1.f){
-		enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, 0 , WINDOW_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(PICCOLO)));
+	if(getGlobalTime()>2000 && timer > 3000){
+		enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2)*CANVAS_WIDTH , CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(PICCOLO)));
+		timer = 0.f;
 	}
-
 	for(list<Enemy *>::iterator it = enemy_list.begin(); it!=enemy_list.end(); ++it){
 		if(*it != nullptr){
 			if((*it)->getActiveStatus()){
@@ -62,4 +66,5 @@ void Game::update()
 		}	
 	}
 	player.update();
+	timer += getDeltaTime();
 }
