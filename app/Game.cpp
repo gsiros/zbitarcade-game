@@ -27,6 +27,7 @@ void Game::init() {
 	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
 	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 	setCanvasScaleMode(CANVAS_SCALE_FIT);
+	//setFullScreen(true);
 	setFont(string(POCOYO_TV_FONT));
 	player.init();
 }
