@@ -1,0 +1,24 @@
+
+---------------------------- TO DO ----------------------------------------------
+
+1) health bar over enemies (in progress....)
+2) player health bar in the top of the screen
+3) enemies attack() function
+4) kill count or score or idk (done)
+5) add more enemies ex. mario, luigi, creeper, goomba
+
+
+
+----------------------------- IDEAS---------------------------------------------
+
+1) Goku's ultimate attack 
+2) Goomba's death by getting stepped at
+
+
+------------------------ HP BAR FUNCTION ------------------------------------------
+
+x0 = 100% -> R = 0.f / G = 1.f / B = 0.f
+x1 = 0%   -> R = 1.f / G = 0.f / B = 0.f
+
+
+

@@ -14,6 +14,7 @@ using namespace graphics;
 class Game : public Entity {
 public:
 	float timer;
+	int score;
 	float window_width = 800;
 	float window_height = 500;
 

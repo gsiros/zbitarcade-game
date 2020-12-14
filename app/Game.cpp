@@ -22,10 +22,12 @@ Game::~Game() {
 
 void Game::init() {
 	timer = 0.f;
+	score = 0;
 	// DO NOT CHANGE TO CANVAS_WIDTH/_HEIGHT
 	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
 	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 	setCanvasScaleMode(CANVAS_SCALE_FIT);
+	setFont(string(POCOYO_TV_FONT));
 	player.init();
 }
 
@@ -37,13 +39,17 @@ void Game::draw()
 	br.texture = "assets\\background.png";
 	drawRect((CANVAS_WIDTH)/ 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
+	br.texture = "";
+	br.fill_color[0] = .0f;
+	br.fill_color[1] = .0f;
+	br.fill_color[2] = .0f;
+	drawText(10, 50, 40, "Score: "+to_string(score), br);
+
 	// Draw Entities:
 	for(list<Enemy *>::iterator it = enemy_list.begin(); it!=enemy_list.end(); ++it){
 		(*it)->draw();
 	}
 	player.draw();
-	
-
 }
 
 void Game::update()

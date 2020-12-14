@@ -163,6 +163,9 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Vect.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="ToDo.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

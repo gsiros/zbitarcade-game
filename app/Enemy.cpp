@@ -15,6 +15,18 @@ void Enemy::draw()
 	br.outline_opacity = 0;
 	br.texture = assetFile;
 	drawRect(position.getX(), position.getY(), width, height, br);
+
+	br.fill_opacity = 1;
+	br.outline_width = 3;
+	br.outline_opacity = 1;
+	br.outline_color[0] = 0.f;
+	br.outline_color[1] = 0.f;
+	br.outline_color[2] = 0.f;
+	br.fill_color[0] = 1.f;
+	br.fill_color[1] = 0.f;
+	br.fill_color[2] = 0.f;
+	br.texture = "";
+	drawRect(position.getX(), position.getY() - height/2 -20, 100, 10, br);
 }
 
 void Enemy::update()
@@ -23,6 +35,7 @@ void Enemy::update()
 	chasePlayer(&game->player);
 	if(hp <= 0.f){
        	active = false;
+		game->score++;
 	}
 }
 
