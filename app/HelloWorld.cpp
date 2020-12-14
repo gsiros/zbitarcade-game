@@ -9,21 +9,19 @@
 #include "Vect.h"
 #include <list>
 
-#define MS_CAP 0.15f
-
 using namespace graphics;
 
 bool jump = false;
 
 void draw() {
 
-	Game* game = reinterpret_cast<Game*> (getUserData());
+	Game* game = reinterpret_cast<Game*>(getUserData());
 	game->draw();
 }
 
 void update(float ms) {
 
-	Game* game = (Game*)getUserData();
+	Game* game = reinterpret_cast<Game*>(getUserData());
 	game->update();
 	
 }
