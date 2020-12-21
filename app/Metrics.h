@@ -19,3 +19,7 @@
 #define POCOYO_TV_FONT "assets\\fonts\\POCOYO_TV.ttf"
 #define GOKU_PROFILE_PIC "assets\\PlayerPic.png"
 #define PLAYER_UI "assets\\PlayerUI.png"
+
+#define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"
+#define MINECRAFT_SOUND_HIT "assets\\sounds\\minecraft_sound_hit.mp3"
+#define JOJOS_MAIN_MUSIC "assets\\sounds\\jojos_main_sound.mp3"

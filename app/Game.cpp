@@ -29,6 +29,7 @@ void Game::init() {
 	setCanvasScaleMode(CANVAS_SCALE_FIT);
 	//setFullScreen(true);
 	setFont(string(POCOYO_TV_FONT));
+	playMusic(string(JOJOS_MAIN_MUSIC), 0.05f);
 	player.init();
 }
 

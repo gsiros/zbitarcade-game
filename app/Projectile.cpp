@@ -92,6 +92,7 @@ void Projectile::checkCollisionWithEnemy() {
 		if ((abs((*it)->position.getX() - position.getX()) < 30) && (abs((*it)->position.getY() - position.getY()) < (*it)->getHeight()/2)) {
 			// lower hp of enemy:
 			(*it)->setHp((*it)->getHp() - 25.f);
+			playSound(string(MINECRAFT_SOUND_HIT),0.1f);
 			active = false;
 		}
 	}
