@@ -18,7 +18,7 @@ public:
 	float window_width = 800;
 	float window_height = 500;
 
-	Player player = Player(CHARACTER_WIDTH, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(GOKU));
+	Player player = Player(CHARACTER_WIDTH, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU));
 	Vect gravity = Vect(0, GRAVITY_PULL);
 
 	list<Enemy *> enemy_list;

@@ -10,6 +10,8 @@ public:
 	void draw() override;
 	void update() override;
 
+	void attack() override;
+
 	void chasePlayer(Player * p);
 };
 

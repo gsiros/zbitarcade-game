@@ -7,6 +7,7 @@ using namespace std;
 class Character : public Entity {
 
 protected:
+	float attackTimer;
 	float width, height;
 	float hp;
 	string assetFile;
@@ -21,6 +22,8 @@ public:
 	void init() = 0;
 	void draw() = 0;
 	void update() = 0;
+
+	virtual void attack() = 0;
 
 	float getWidth() const;
 	float getHeight() const;

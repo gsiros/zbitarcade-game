@@ -24,7 +24,7 @@ public:
 	void draw() override;
 	void update() override;
 	
-	void attack();
+	void attack() override;
 	list<Projectile*> projectile_list;
 };
 

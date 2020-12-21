@@ -7,6 +7,7 @@
 void Player::init()
 {
 	jump = false;
+	attackTimer = 0;
 }
 
 void Player::draw()
@@ -31,6 +32,10 @@ void Player::update()
 	Game* game = reinterpret_cast<Game*> (getUserData());
 
 	// PLAYER UPDATE
+
+	if (hp <= 0) {
+		active = false;
+	}
 
 	// If 'W' is pressed:
 	if (getKeyState(SCANCODE_W)) {
@@ -72,11 +77,11 @@ void Player::update()
 		if (projectile_list.empty()) {
 			playSound("assets\\sounds\\fireball_sound_effect.mp3", 0.1f, false);
 			attack();
-
 		}
-		else if (abs(projectile_list.back()->position.getX() - position.getX()) > 50) {
+		else if (attackTimer >= 500) {
 			playSound("assets\\sounds\\fireball_sound_effect.mp3", 0.1f, false);
 			attack();
+			attackTimer = 0;
 		}
 	}
 
@@ -101,7 +106,12 @@ void Player::update()
 		game->player.velocity = Vect(0, -40);
 	}
 
-
+	if (attackTimer < 500) {
+		attackTimer += getDeltaTime();
+	}
+	else {
+		attackTimer = 500;
+	}
 
 }
 
