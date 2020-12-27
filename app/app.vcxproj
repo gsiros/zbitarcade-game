@@ -148,20 +148,28 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="HelloWorld.cpp" />
+    <ClCompile Include="Hunter.cpp" />
+    <ClCompile Include="Piccolo.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Vect.cpp" />
+    <ClCompile Include="Zombie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Goomba.h" />
+    <ClInclude Include="Hunter.h" />
     <ClInclude Include="Metrics.h" />
+    <ClInclude Include="Piccolo.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="Vect.h" />
+    <ClInclude Include="Zombie.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ToDo.txt" />

@@ -6,12 +6,12 @@ class Enemy : public Character {
 public:
 	Enemy(float width, float height, float center_x, float center_y, float hp, const string assetFile) : Character(width, height, center_x, center_y, hp, assetFile) {}
 
-	void init() override;
-	void draw() override;
-	void update() override;
+	void init() = 0;
+	void draw() = 0;
+	void update() = 0;
 
-	void attack() override;
+	void attack() = 0;
 
-	void chasePlayer(Player * p);
+	virtual void chasePlayer(Player* p) = 0;
 };
 

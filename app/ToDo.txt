@@ -1,14 +1,17 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
+1) add more enemies ex. mario, luigi, creeper, goomba (dif stats 4 every enemy)
+-goomba
+-Jason (chainsaw)
 
-5) add more enemies ex. mario, luigi, creeper, goomba (dif stats 4 every enemy)
-6) message in screen + audio when goku dies
+2) message in screen + audio when goku dies
+3) starting menu 
+4) different backgrounds
+5) different levels
 
------------------------------ IDEAS---------------------------------------------
+---------------------------- IDEAS ----------------------------------------------
 
 1) Goku's ultimate attack 
 2) Goomba's death by getting stepped at
-
-
-
+3) platform to jump to

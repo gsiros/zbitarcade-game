@@ -32,6 +32,12 @@ void Player::update()
 	Game* game = reinterpret_cast<Game*> (getUserData());
 
 	// PLAYER UPDATE
+	if (attackTimer < 500) {
+		attackTimer += getDeltaTime();
+	}
+	else {
+		attackTimer = 500;
+	}
 
 	if (hp <= 0) {
 		active = false;
@@ -74,11 +80,7 @@ void Player::update()
 
 	// If "SPACEBAR" is pressed:
 	if (getKeyState(SCANCODE_SPACE)) {
-		if (projectile_list.empty()) {
-			playSound("assets\\sounds\\fireball_sound_effect.mp3", 0.1f, false);
-			attack();
-		}
-		else if (attackTimer >= 500) {
+		if (attackTimer >= 500) {
 			playSound("assets\\sounds\\fireball_sound_effect.mp3", 0.1f, false);
 			attack();
 			attackTimer = 0;
@@ -104,13 +106,6 @@ void Player::update()
 		jump = false;
 		game->gravity = Vect(0, 5);
 		game->player.velocity = Vect(0, -40);
-	}
-
-	if (attackTimer < 500) {
-		attackTimer += getDeltaTime();
-	}
-	else {
-		attackTimer = 500;
 	}
 
 }

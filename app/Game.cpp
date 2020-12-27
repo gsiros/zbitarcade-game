@@ -1,8 +1,12 @@
 #include "Game.h"
+#include "Hunter.h"
+#include "Piccolo.h"
 #include "Metrics.h"
 #include "graphics.h"
 #include <math.h>
 #include <random>
+#include "Zombie.h"
+#include "Goomba.h"
 
 using namespace graphics;
 
@@ -64,12 +68,7 @@ void Game::draw()
 	br3.fill_color[1] = 1.f - (200-player_hp)/200; // GREEN
 	br3.fill_color[2] = 0.f; // BLUE
 	br3.texture = "";
-	//br.fill_secondary_color[0] = 0.2f;
-	//br.fill_secondary_color[1] = 0.2f;
-	//br.fill_secondary_color[2] = 1.0f;
-	//br.gradient = true;
-	//br.gradient_dir_u = 1.0f;
-	//br.gradient_dir_v = 0.0f;
+
 
 	drawRect(236 - (((200-player_hp)/200)*205/2), 75, (player_hp/200)*205, 27, br3);
 
@@ -90,8 +89,31 @@ void Game::draw()
 void Game::update()
 {	
 
-	if(getGlobalTime()>2000 && timer > 3000){
-		enemy_list.push_back(new Enemy(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2)*CANVAS_WIDTH , CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(PICCOLO)));
+	if(getGlobalTime()>2000 && timer > 5000){
+
+		int choice = rand() % 5;
+
+		switch (choice) {
+		
+			case 0:
+				enemy_list.push_back(new Piccolo(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2)*CANVAS_WIDTH , CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO)));
+				break;
+			case 1:
+				enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
+				break;
+			case 2:
+				enemy_list.push_back(new Hunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 -50, 100, string(HUNTER)));
+				break;
+			case 3:
+				enemy_list.push_back(new Goomba(100, 100, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 50, 50, string(GOOMBA)));
+				break;
+			case 4:
+				//enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
+				enemy_list.push_back(new Hunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 -50, 100, string(HUNTER)));
+
+				break;
+		}
+
 		enemy_list.back()->init();
 		timer = 0.f;
 	}
