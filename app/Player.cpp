@@ -41,6 +41,8 @@ void Player::update()
 
 	if (hp <= 0) {
 		active = false;
+		stopMusic();
+		playMusic(string(MARIO_KART_LOSING_SOUND_EFFECT), 0.1f);
 	}
 
 	// If 'W' is pressed:
@@ -92,7 +94,7 @@ void Player::update()
 		if (*it != nullptr) {
 			(*it)->update();
 			if (!(*it)->getActiveStatus()) {
-				// TODO: what happens with garbage collection?
+				delete* it;
 				it = projectile_list.erase(it);
 				if (it == projectile_list.end())
 					break;
@@ -119,4 +121,12 @@ void Player::attack() {
 		projectile_list.push_back(new Projectile(40, 40, position.getX(), position.getY(), "assets\\Haduken"));
 		projectile_list.back()->setAssetFileMoveLeft();
 	}
+}
+
+void Player::setJump(bool status) {
+	this->jump = status;
+}
+
+bool Player::getJump() {
+	return this->jump;
 }

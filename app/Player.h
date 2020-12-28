@@ -26,5 +26,9 @@ public:
 	
 	void attack() override;
 	list<Projectile*> projectile_list;
+
+	void setJump(bool status);
+	bool getJump();
+
 };
 

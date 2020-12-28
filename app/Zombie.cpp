@@ -49,8 +49,15 @@ void Zombie::draw()
 void Zombie::update()
 {
 	Game* game = reinterpret_cast<Game*>(getUserData());
+	
+	int probability = rand() % 50;
+
+	if (probability == 2)
+		playSound(string(MINECRAFT_BRUH_SOUND_EFFECT), 0.1f);
+
 	chasePlayer(&game->player);
 	attack();
+	
 	if (hp <= 0.f) {
 		active = false;
 		game->score++;

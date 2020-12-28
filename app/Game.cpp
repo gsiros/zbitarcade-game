@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "Hunter.h"
+#include "Haunter.h"
 #include "Piccolo.h"
 #include "Metrics.h"
 #include "graphics.h"
@@ -7,6 +7,7 @@
 #include <random>
 #include "Zombie.h"
 #include "Goomba.h"
+#include "Jason.h"
 
 using namespace graphics;
 
@@ -83,52 +84,60 @@ void Game::draw()
 	for(list<Enemy *>::iterator it = enemy_list.begin(); it!=enemy_list.end(); ++it){
 		(*it)->draw();
 	}
-	player.draw();
+	if (player.getActiveStatus()) {
+		player.draw();
+	}
+		
 }
 
 void Game::update()
 {	
+	if (player.getActiveStatus()) {
+		if (getGlobalTime() > 2000 && timer > 5000) {
 
-	if(getGlobalTime()>2000 && timer > 5000){
+			int choice = rand() % 5;
 
-		int choice = rand() % 5;
+			switch (choice) {
 
-		switch (choice) {
-		
 			case 0:
-				enemy_list.push_back(new Piccolo(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2)*CANVAS_WIDTH , CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO)));
+				enemy_list.push_back(new Piccolo(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO)));
 				break;
 			case 1:
 				enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
 				break;
 			case 2:
-				enemy_list.push_back(new Hunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 -50, 100, string(HUNTER)));
+				enemy_list.push_back(new Haunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 - 50, 100, string(HAUNTER)));
 				break;
 			case 3:
-				enemy_list.push_back(new Goomba(100, 100, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 50, 50, string(GOOMBA)));
+				enemy_list.push_back(new Goomba(60, 60, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 25, 25, string(GOOMBA)));
 				break;
 			case 4:
-				//enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
-				enemy_list.push_back(new Hunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 -50, 100, string(HUNTER)));
+				enemy_list.push_back(new Jason(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(JASON)));
 
 				break;
+			}
+
+			enemy_list.back()->init();
+			timer = 0.f;
 		}
 
-		enemy_list.back()->init();
-		timer = 0.f;
-	}
-	for(list<Enemy *>::iterator it = enemy_list.begin(); it!=enemy_list.end(); ++it){
-		if(*it != nullptr){
-			if((*it)->getActiveStatus()){
-				(*it)->update();
-			} else {
-				delete* it;
-				it = enemy_list.erase(it);
-				if (it == enemy_list.end())
-					break;
+		for (list<Enemy*>::iterator it = enemy_list.begin(); it != enemy_list.end(); ++it) {
+			if (*it != nullptr) {
+				if ((*it)->getActiveStatus()) {
+					(*it)->update();
+				}
+				else {
+					delete* it;
+					it = enemy_list.erase(it);
+					if (it == enemy_list.end())
+						break;
+				}
 			}
-		}	
+		}
+		player.update();
+		timer += getDeltaTime();
 	}
-	player.update();
-	timer += getDeltaTime();
+	else {
+
+	}
 }

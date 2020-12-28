@@ -10,7 +10,8 @@ public:
 
 	void attack() override;
 
-	void chasePlayer(Player* p);
+	void chasePlayer(Player* p) override;
+	void checkIfSteppedOn();
 
 };
 

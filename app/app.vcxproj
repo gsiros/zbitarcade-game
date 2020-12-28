@@ -150,7 +150,8 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Goomba.cpp" />
     <ClCompile Include="HelloWorld.cpp" />
-    <ClCompile Include="Hunter.cpp" />
+    <ClCompile Include="Haunter.cpp" />
+    <ClCompile Include="Jason.cpp" />
     <ClCompile Include="Piccolo.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -163,7 +164,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Goomba.h" />
-    <ClInclude Include="Hunter.h" />
+    <ClInclude Include="Haunter.h" />
+    <ClInclude Include="Jason.h" />
     <ClInclude Include="Metrics.h" />
     <ClInclude Include="Piccolo.h" />
     <ClInclude Include="Player.h" />

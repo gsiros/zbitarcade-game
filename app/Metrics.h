@@ -22,8 +22,12 @@
 #define ZOMBIE "assets\\Zombie"
 #define JASON "assets\\Jason"
 #define GOOMBA "assets\\Goomba"
-#define HUNTER "assets\\Hunter"
+#define HAUNTER "assets\\Haunter"
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"
 #define MINECRAFT_SOUND_HIT "assets\\sounds\\minecraft_sound_hit.mp3"
 #define JOJOS_MAIN_MUSIC "assets\\sounds\\jojos_main_sound.mp3"
+#define GOOMBAS_JUMP_SOUND "assets\\sounds\\Goomba_jump_sound_effect.mp3"
+#define STABBING_SOUND_EFFECT "assets\\sounds\\stabbing_sound_effect.mp3"
+#define MINECRAFT_BRUH_SOUND_EFFECT "assets\\sounds\\minecraft_bruh_sound_effect.mp3"
+#define MARIO_KART_LOSING_SOUND_EFFECT "assets\\sounds\\mario_kart_losing_sound_effect.mp3"

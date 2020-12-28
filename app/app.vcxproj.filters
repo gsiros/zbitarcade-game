@@ -42,10 +42,13 @@
     <ClCompile Include="Piccolo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Hunter.cpp">
+    <ClCompile Include="Goomba.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Goomba.cpp">
+    <ClCompile Include="Jason.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Haunter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,10 +83,13 @@
     <ClInclude Include="Piccolo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Hunter.h">
+    <ClInclude Include="Goomba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Goomba.h">
+    <ClInclude Include="Jason.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Haunter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
