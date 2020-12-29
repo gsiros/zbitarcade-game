@@ -9,6 +9,9 @@
 #define CHARACTER_WIDTH 80
 #define CHARACTER_HEIGHT 150
 
+#define DEFAULT_MOVEMENT_SPEED 4
+#define DEFAULT_ATTACK_SPEED 500
+
 #define MAX_ENEMY_HP 200
 
 #define GRAVITY_PULL 5
@@ -23,6 +26,7 @@
 #define JASON "assets\\Jason"
 #define GOOMBA "assets\\Goomba"
 #define HAUNTER "assets\\Haunter"
+#define POWER_UP_STAR "assets\\Power_up_star"
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"
 #define MINECRAFT_SOUND_HIT "assets\\sounds\\minecraft_sound_hit.mp3"
@@ -31,3 +35,4 @@
 #define STABBING_SOUND_EFFECT "assets\\sounds\\stabbing_sound_effect.mp3"
 #define MINECRAFT_BRUH_SOUND_EFFECT "assets\\sounds\\minecraft_bruh_sound_effect.mp3"
 #define MARIO_KART_LOSING_SOUND_EFFECT "assets\\sounds\\mario_kart_losing_sound_effect.mp3"
+#define SUPER_MARIO_STAR_MUSIC "assets\\sounds\\super_mario_star_music.mp3"

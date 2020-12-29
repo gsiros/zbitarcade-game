@@ -17,6 +17,10 @@ using namespace std;
 class Player : public Character {
 private:
 	bool jump;
+	bool upgraded;
+	float attackSpeed;
+	float movementSpeed;
+	float duration;
 public:
 	Player(float width, float height, float center_x, float center_y, float hp, const string assetFile) : Character(width, height, center_x, center_y, hp, assetFile) {}
 	
@@ -29,6 +33,25 @@ public:
 
 	void setJump(bool status);
 	bool getJump();
+	void upgrade(float duration, float attackSpeed, float movementSpeed);
+	inline float getAttackSpeed() {
+		return this->attackSpeed;
+	}
+	void setAttackSpeed(float attackSpeed) {
+		this->attackSpeed = attackSpeed;
+	}
+	void setMovementSpeed(float movementSpeed) {
+		this->movementSpeed = movementSpeed;
+	}
+	inline float getMovementSpeed() {
+		return this->movementSpeed;
+	}
+	void setUpgraded(bool flag) {
+		this->upgraded = flag;
+	}
+	inline float getUpgraded() {
+		return this->upgraded;
+	}
 
 };
 

@@ -8,6 +8,8 @@ void Player::init()
 {
 	jump = false;
 	attackTimer = 0;
+	attackSpeed = float(DEFAULT_ATTACK_SPEED);
+	movementSpeed = float(DEFAULT_MOVEMENT_SPEED);
 }
 
 void Player::draw()
@@ -67,7 +69,7 @@ void Player::update()
 	// If 'A' is pressed:
 	if (getKeyState(SCANCODE_A)) {
 		if (position.getX() - width / 3 > 0) {
-			position.setX(position.getX() - (getDeltaTime()/4.f));
+			position.setX(position.getX() - (getDeltaTime()/movementSpeed));
 			setAssetFileMoveLeft();
 		}
 	}
@@ -75,14 +77,14 @@ void Player::update()
 	// If 'D' is pressed:
 	if (getKeyState(SCANCODE_D)) {
 		if (position.getX() + width / 3 < CANVAS_WIDTH) {
-			position.setX(position.getX() + (getDeltaTime()/4.f));
+			position.setX(position.getX() + (getDeltaTime()/movementSpeed));
 			setAssetFileMoveRight();
 		}
 	}
 
 	// If "SPACEBAR" is pressed:
 	if (getKeyState(SCANCODE_SPACE)) {
-		if (attackTimer >= 500) {
+		if (attackTimer >= attackSpeed) {
 			playSound("assets\\sounds\\fireball_sound_effect.mp3", 0.1f, false);
 			attack();
 			attackTimer = 0;
@@ -100,6 +102,17 @@ void Player::update()
 					break;
 			}
 		}
+	}
+
+	if (upgraded) {
+		duration -= getDeltaTime();
+	}
+
+	if (upgraded && duration <= 0) {
+		upgraded = false;
+		setMovementSpeed(float(DEFAULT_MOVEMENT_SPEED));
+		setAttackSpeed(float(DEFAULT_ATTACK_SPEED));
+
 	}
 
 	if (position.getY() + height / 2 >= CANVAS_HEIGHT)
@@ -129,4 +142,12 @@ void Player::setJump(bool status) {
 
 bool Player::getJump() {
 	return this->jump;
+}
+
+void Player::upgrade(float duration, float attackSpeed, float movementSpeed) {
+	this->duration = duration;
+	this->setAttackSpeed(attackSpeed);
+	this->setMovementSpeed(movementSpeed);
+	this->setUpgraded(true);
+	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.1f);
 }

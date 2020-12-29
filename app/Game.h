@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
+#include "PowerUp.h"
 #include "Metrics.h"
 #include "graphics.h"
 #include "Entity.h"
@@ -22,6 +23,7 @@ public:
 	Vect gravity = Vect(0, GRAVITY_PULL);
 
 	list<Enemy *> enemy_list;
+	PowerUp* pu = nullptr;
 
 	Game();
 	~Game();

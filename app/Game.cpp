@@ -8,6 +8,7 @@
 #include "Zombie.h"
 #include "Goomba.h"
 #include "Jason.h"
+#include "PowerUp.h"
 
 using namespace graphics;
 
@@ -23,6 +24,8 @@ Game::~Game() {
 		delete *it;
 	}
 
+	if (pu)
+		delete pu;
 }
 
 void Game::init() {
@@ -84,8 +87,13 @@ void Game::draw()
 	for(list<Enemy *>::iterator it = enemy_list.begin(); it!=enemy_list.end(); ++it){
 		(*it)->draw();
 	}
+	// Draw Player:
 	if (player.getActiveStatus()) {
 		player.draw();
+	}
+	// Draw PowerUp:
+	if (pu && !pu->getCaptured()) {
+		pu->draw();
 	}
 		
 }
@@ -113,7 +121,6 @@ void Game::update()
 				break;
 			case 4:
 				enemy_list.push_back(new Jason(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(JASON)));
-
 				break;
 			}
 
@@ -127,14 +134,30 @@ void Game::update()
 					(*it)->update();
 				}
 				else {
+					// Spawn power up:
+					if (pu == nullptr && !player.getUpgraded()) {
+						pu = new PowerUp(50, 50, (*it)->position.getX(), (*it)->position.getY() - 10, string(POWER_UP_STAR));
+						pu->init();
+					}
+
+
 					delete* it;
 					it = enemy_list.erase(it);
+
+
 					if (it == enemy_list.end())
 						break;
 				}
 			}
 		}
 		player.update();
+		if (pu && pu->getActiveStatus()) {
+			pu->update();
+		}
+		else if(pu) {
+			delete pu;
+			pu = nullptr;
+		}
 		timer += getDeltaTime();
 	}
 	else {
