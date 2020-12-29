@@ -34,7 +34,6 @@ void PowerUp::update() {
 	if (timer <= 0) {
 		setActiveStatus(false);
 	}
-		
 }
 
 void PowerUp::checkIfCaptured(Player* p) {
