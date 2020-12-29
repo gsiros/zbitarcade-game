@@ -149,5 +149,5 @@ void Player::upgrade(float duration, float attackSpeed, float movementSpeed) {
 	this->setAttackSpeed(attackSpeed);
 	this->setMovementSpeed(movementSpeed);
 	this->setUpgraded(true);
-	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.1f);
+	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.15f);
 }

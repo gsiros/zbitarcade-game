@@ -28,8 +28,7 @@ void PowerUp::update() {
 
 	this->timer -= getDeltaTime();
 
-	if(!captured)
-		checkIfCaptured(&g->player);
+	checkIfCaptured(&g->player);
 
 	if (timer <= 0) {
 		setActiveStatus(false);
@@ -37,8 +36,9 @@ void PowerUp::update() {
 }
 
 void PowerUp::checkIfCaptured(Player* p) {
-	if (sqrt(pow(position.getX() - p->position.getX(),2) + pow(position.getY() - p->position.getY(),2)) < width / 2) {
+	if (sqrt(pow(position.getX() - p->position.getX(),2) + pow(position.getY() - p->position.getY(),2)) < 50) {
 		captured = true;
-		p->upgrade(10000, 200, 3);
+		p->upgrade(15000, 200, 3);
+		setActiveStatus(false);
 	}
 }
