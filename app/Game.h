@@ -14,7 +14,11 @@ using namespace graphics;
 
 class Game : public Entity {
 public:
+
+	int waveVariable = 5;
+
 	float timer;
+	float timerLimit;
 	int score;
 	float window_width = 800;
 	float window_height = 500;
@@ -32,4 +36,5 @@ public:
 	void draw() override;
 	void update() override;
 
+	void updateTimers();
 };

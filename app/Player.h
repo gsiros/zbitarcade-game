@@ -33,7 +33,8 @@ public:
 
 	void setJump(bool status);
 	bool getJump();
-	void upgrade(float duration, float attackSpeed, float movementSpeed);
+	void upgrade(float duration, float attackSpeed, float movementSpeed, string assetFile);
+	
 	inline float getAttackSpeed() {
 		return this->attackSpeed;
 	}

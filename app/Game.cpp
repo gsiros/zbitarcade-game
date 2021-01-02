@@ -30,6 +30,7 @@ Game::~Game() {
 
 void Game::init() {
 	timer = 0.f;
+	timerLimit = 4000.f;
 	score = 0;
 	// DO NOT CHANGE TO CANVAS_WIDTH/_HEIGHT
 	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
@@ -70,7 +71,7 @@ void Game::draw()
 	br3.fill_opacity = 1;
 	br3.fill_color[0] = 0.f + (200-player_hp)/200; // RED
 	br3.fill_color[1] = 1.f - (200-player_hp)/200; // GREEN
-	br3.fill_color[2] = 0.f; // BLUE
+	br3.fill_color[2] = 0.f;					   // BLUE
 	br3.texture = "";
 
 
@@ -101,7 +102,8 @@ void Game::draw()
 void Game::update()
 {	
 	if (player.getActiveStatus()) {
-		if (getGlobalTime() > 2000 && timer > 5000) {
+		
+		if (getGlobalTime() > 2000 && timer > timerLimit) {
 
 			int choice = rand() % 5;
 
@@ -109,24 +111,36 @@ void Game::update()
 
 			case 0:
 				enemy_list.push_back(new Piccolo(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO)));
+				enemy_list.back()->init();
 				break;
 			case 1:
-				enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
+				if(rand() % 2 == 1){
+					enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
+					enemy_list.back()->init();
+				}
 				break;
 			case 2:
-				enemy_list.push_back(new Haunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 - 50, 100, string(HAUNTER)));
+				if (rand() % 3 == 1) {
+					enemy_list.push_back(new Haunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 - 50, 100, string(HAUNTER)));
+					enemy_list.back()->init();
+				}
 				break;
 			case 3:
-				enemy_list.push_back(new Goomba(60, 60, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 25, 25, string(GOOMBA)));
+				if (rand() % 2 == 1) {
+					enemy_list.push_back(new Goomba(60, 60, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 25, 25, string(GOOMBA)));
+					enemy_list.back()->init();
+				}
 				break;
 			case 4:
 				enemy_list.push_back(new Jason(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(JASON)));
+				enemy_list.back()->init();
 				break;
 			}
 
-			enemy_list.back()->init();
+			
 			timer = 0.f;
 		}
+		
 
 		for (list<Enemy*>::iterator it = enemy_list.begin(); it != enemy_list.end(); ++it) {
 			if (*it != nullptr) {
@@ -135,8 +149,8 @@ void Game::update()
 				}
 				else {
 					// Spawn power up:
-					if (pu == nullptr && !player.getUpgraded()) {
-						pu = new PowerUp(50, 50, (*it)->position.getX(), (*it)->position.getY() - 10, string(POWER_UP_STAR));
+					if (pu == nullptr && !player.getUpgraded() && rand() % 9 == 4) {
+						pu = new PowerUp(50, 50, (*it)->position.getX(), (*it)->position.getY() - 20, string(POWER_UP_STAR));
 						pu->init();
 					}
 
@@ -158,9 +172,16 @@ void Game::update()
 			delete pu;
 			pu = nullptr;
 		}
-		timer += getDeltaTime();
+		updateTimers();
+		if (score > 0 && score % waveVariable == 0 && timerLimit > 1800) {
+			timerLimit -= 250;
+		}
 	}
 	else {
 
 	}
+}
+
+void Game::updateTimers() {
+	timer += getDeltaTime();
 }

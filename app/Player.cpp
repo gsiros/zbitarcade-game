@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "Game.h"
 #include "Projectile.h"
-
+#include "Metrics.h"
 
 
 void Player::init()
@@ -112,7 +112,16 @@ void Player::update()
 		upgraded = false;
 		setMovementSpeed(float(DEFAULT_MOVEMENT_SPEED));
 		setAttackSpeed(float(DEFAULT_ATTACK_SPEED));
-
+		if (this->assetFile == this->asset_character_left) {
+			this->asset_character_left = string(GOKU) + "_left.png";
+			this->asset_character_right = string(GOKU) + "_right.png";
+			this->assetFile = asset_character_left;
+		}
+		else {
+			this->asset_character_left = string(GOKU) + "_left.png";
+			this->asset_character_right = string(GOKU) + "_right.png";
+			this->assetFile = asset_character_right;
+		}
 	}
 
 	if (position.getY() + height / 2 >= CANVAS_HEIGHT)
@@ -144,10 +153,20 @@ bool Player::getJump() {
 	return this->jump;
 }
 
-void Player::upgrade(float duration, float attackSpeed, float movementSpeed) {
+void Player::upgrade(float duration, float attackSpeed, float movementSpeed, string assetFile) {
 	this->duration = duration;
 	this->setAttackSpeed(attackSpeed);
 	this->setMovementSpeed(movementSpeed);
 	this->setUpgraded(true);
+	if (this->assetFile == this->asset_character_left) {
+		this->asset_character_left = assetFile + "_left.png";
+		this->asset_character_right = assetFile + "_right.png";
+		this->assetFile = asset_character_left;
+	}
+	else {
+		this->asset_character_left = assetFile + "_left.png";
+		this->asset_character_right = assetFile + "_right.png";
+		this->assetFile = asset_character_right;
+	}
 	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.15f);
 }

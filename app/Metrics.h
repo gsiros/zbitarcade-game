@@ -27,6 +27,7 @@
 #define GOOMBA "assets\\Goomba"
 #define HAUNTER "assets\\Haunter"
 #define POWER_UP_STAR "assets\\Power_up_star"
+#define GOKU_SUPER_SAIYAN "assets\\Goku_super_saiyan"
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"
 #define MINECRAFT_SOUND_HIT "assets\\sounds\\minecraft_sound_hit.mp3"
