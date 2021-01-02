@@ -168,5 +168,5 @@ void Player::upgrade(float duration, float attackSpeed, float movementSpeed, str
 		this->asset_character_right = assetFile + "_right.png";
 		this->assetFile = asset_character_right;
 	}
-	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.15f);
+	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.25f);
 }
