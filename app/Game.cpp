@@ -32,6 +32,7 @@ void Game::init() {
 	timer = 0.f;
 	timerLimit = 4000.f;
 	score = 0;
+	prevScore = 0;
 	// DO NOT CHANGE TO CANVAS_WIDTH/_HEIGHT
 	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
 	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -173,8 +174,9 @@ void Game::update()
 			pu = nullptr;
 		}
 		updateTimers();
-		if (score > 0 && score % waveVariable == 0 && timerLimit > 1800) {
-			timerLimit -= 250;
+		if (score > 0 && score!=prevScore && score % waveVariable == 0 && timerLimit > 1500) {
+			timerLimit -= 1000;
+			prevScore = int(score);
 		}
 	}
 	else {

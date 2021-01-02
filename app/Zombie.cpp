@@ -50,10 +50,10 @@ void Zombie::update()
 {
 	Game* game = reinterpret_cast<Game*>(getUserData());
 	
-	int probability = rand() % 50;
+	//int probability = rand() % 50;
 
-	if (probability == 2)
-		playSound(string(MINECRAFT_BRUH_SOUND_EFFECT), 0.1f);
+	//if (probability == 2)
+		//playSound(string(MINECRAFT_BRUH_SOUND_EFFECT), 0.1f);
 
 	chasePlayer(&game->player);
 	attack();

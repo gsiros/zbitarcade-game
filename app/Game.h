@@ -20,6 +20,7 @@ public:
 	float timer;
 	float timerLimit;
 	int score;
+	int prevScore;
 	float window_width = 800;
 	float window_height = 500;
 
