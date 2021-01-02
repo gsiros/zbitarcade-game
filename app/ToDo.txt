@@ -1,15 +1,10 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
-1) random enemy drops star (or coin or smth) 
-2) star gives goku attack speed + movement speed for t seconds , different hair color
-3) audio for goku's ultimate 
-4) starting menu 
-5) retry etc on goku's death
-6) different backgrounds
-7) different levels
-
+1) starting menu 
+2) retry etc on goku's death
+3) different backgrounds
+4) adding "about" to main menu
 ---------------------------- IDEAS ----------------------------------------------
-
-1) platform to jump to (?????????????)
-2) *** goku's customization *** 
+1) platform to jump to (?????????????) (doubt ** 2)
+2) *** goku's customization ***  (doubt)
