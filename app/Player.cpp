@@ -43,6 +43,7 @@ void Player::update()
 
 	if (hp <= 0) {
 		active = false;
+		game->state = RETRY;
 		stopMusic();
 		playMusic(string(MARIO_KART_LOSING_SOUND_EFFECT), 0.1f);
 	}
