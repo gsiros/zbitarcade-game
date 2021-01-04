@@ -302,6 +302,7 @@ void Game::update()
 				case ABOUT:
 					break;
 				case EXIT:
+					delete this;
 					destroyWindow();
 					break;
 				}
