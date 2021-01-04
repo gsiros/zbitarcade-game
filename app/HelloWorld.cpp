@@ -28,10 +28,16 @@ void update(float ms) {
 
 int main() {
 	Game* game = new Game();
-	game->init();
+	
+	// DO NOT CHANGE TO CANVAS_WIDTH/_HEIGHT
+	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
+	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+	setCanvasScaleMode(CANVAS_SCALE_FIT);
+	//setFullScreen(true);
 	setUserData(game);
 	setDrawFunction(draw);
 	setUpdateFunction(update);
+	game->init();
 	startMessageLoop();
 	destroyWindow();
 	delete game;

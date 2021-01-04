@@ -12,11 +12,23 @@
 using namespace std;
 using namespace graphics;
 
+enum GAMESTATE {
+	MAIN_MENU, PLAYING, RETRY
+};
+
+enum MAIN_MENU_BUTTON {
+	PLAY, ABOUT, EXIT
+};
+
 class Game : public Entity {
 public:
 
 	int waveVariable = 5;
 
+	GAMESTATE state = MAIN_MENU;
+	MAIN_MENU_BUTTON buttonMM = PLAY;
+	float arrow_offset;
+	float button_timer;
 	float timer;
 	float timerLimit;
 	int score;

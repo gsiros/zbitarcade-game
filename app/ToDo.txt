@@ -1,10 +1,15 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
-1) starting menu 
-2) retry etc on goku's death
+1) Make retry and exit when goku dies
+2) Menu music
 3) different backgrounds
 4) adding "about" to main menu
+5) new main menu background (??)
+
 ---------------------------- IDEAS ----------------------------------------------
+
 1) platform to jump to (?????????????) (doubt ** 2)
 2) *** goku's customization ***  (doubt)
+
+TEPO

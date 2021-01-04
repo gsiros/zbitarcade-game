@@ -14,6 +14,8 @@
 
 #define MAX_ENEMY_HP 200
 
+#define BUTTON_DELAY 250.f
+
 #define GRAVITY_PULL 5
 #define DRAGON_BALL_Z_FONT "assets\\fonts\\Saiyan-Sans.ttf"
 #define GRINCHED_FONT "assets\\fonts\\grinched-font.ttf"
@@ -28,6 +30,8 @@
 #define HAUNTER "assets\\Haunter"
 #define POWER_UP_STAR "assets\\Power_up_star"
 #define GOKU_SUPER_SAIYAN "assets\\Goku_super_saiyan"
+#define _8BIT_ARROW "assets\\8bitarrow.png"
+
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"
 #define MINECRAFT_SOUND_HIT "assets\\sounds\\minecraft_sound_hit.mp3"
@@ -37,3 +41,5 @@
 #define MINECRAFT_BRUH_SOUND_EFFECT "assets\\sounds\\minecraft_bruh_sound_effect.mp3"
 #define MARIO_KART_LOSING_SOUND_EFFECT "assets\\sounds\\mario_kart_losing_sound_effect.mp3"
 #define SUPER_MARIO_STAR_MUSIC "assets\\sounds\\super_mario_star_music.mp3"
+#define MAKE_YOUR_SELECTION_NOW "assets\\sounds\\make_your_selection_now.mp3"
+#define BEEP_SOUND_EFFECT "assets\\sounds\\beep_sound_effect.mp3"
