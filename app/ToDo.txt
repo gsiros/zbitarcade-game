@@ -1,11 +1,11 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
-1) Make retry and exit when goku dies
-2) Menu music
-3) different backgrounds
-4) adding "about" to main menu
-5) new main menu background (??)
+1) Menu music
+2) different backgrounds
+3) adding about's content to main menu
+4) new main menu background 
+5) O PLAYER NA GINEI POINTER!
 
 ---------------------------- IDEAS ----------------------------------------------
 

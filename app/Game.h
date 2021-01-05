@@ -20,6 +20,10 @@ enum MAIN_MENU_BUTTON {
 	PLAY, ABOUT, EXIT
 };
 
+enum RETRY_MENU_BUTTON {
+	AGAIN, BACK_TO_MENU
+};
+
 class Game : public Entity {
 public:
 
@@ -27,6 +31,7 @@ public:
 
 	GAMESTATE state = MAIN_MENU;
 	MAIN_MENU_BUTTON buttonMM = PLAY;
+	RETRY_MENU_BUTTON retry_choice = AGAIN;
 	float arrow_offset;
 	float button_timer;
 	float timer;
@@ -50,4 +55,6 @@ public:
 	void update() override;
 
 	void updateTimers();
+
+	void clearCollections();
 };

@@ -18,16 +18,7 @@ Game::Game()
 }
 
 Game::~Game() {
-
-	for (list<Projectile*>::iterator it = player.projectile_list.begin(); it != player.projectile_list.end(); ++it) {
-		delete *it;
-	}
-	for (list<Enemy *>::iterator it = enemy_list.begin(); it != enemy_list.end(); ++it) {
-		delete *it;
-	}
-
-	if (pu)
-		delete pu;
+	clearCollections();
 }
 
 void Game::init() {
@@ -36,11 +27,14 @@ void Game::init() {
 	score = 0;
 	prevScore = 0;
 	button_timer = .0f;
-	//state = PLAYING;
+	arrow_offset = 0.f;
 	if (state == MAIN_MENU)
 		playSound(string(MAKE_YOUR_SELECTION_NOW), 0.3f);
-	if(state == PLAYING)
+	if (state == PLAYING) {
+		stopMusic();
 		playMusic(string(JOJOS_MAIN_MUSIC), 0.05f);
+	}
+	player = Player(CHARACTER_WIDTH, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU));
 	player.init();
 }
 
@@ -165,8 +159,64 @@ void Game::draw()
 
 			break;
 		}
-		case RETRY:
+		case RETRY:{
+
+			// Draw Entities:
+			for (list<Enemy*>::iterator it = enemy_list.begin(); it != enemy_list.end(); ++it) {
+				(*it)->draw();
+			}
+			// Draw Player:
+			if (player.getActiveStatus()) {
+				player.draw();
+			}
+			// Draw PowerUp:
+			if (pu && !pu->getCaptured()) {
+				pu->draw();
+			}
+
+			Brush br0;
+			br0.fill_opacity = 1;
+			br0.outline_opacity = 1;
+			br0.texture = "";
+			br0.fill_color[0] = 1.0f;
+			br0.fill_color[1] = .0f;
+			br0.fill_color[2] = .0f;
+			setFont(string(DRAGON_BALL_Z_FONT));
+			drawText(CANVAS_WIDTH / 2 - 180, CANVAS_HEIGHT / 2 - 130, 100, "YOU DIED", br0);
+
+			if (retry_choice == AGAIN) {
+				br0.fill_color[0] = 1.0f;
+				br0.fill_color[1] = 0.84f;
+			}
+			else {
+				br0.fill_color[0] = .0f;
+				br0.fill_color[1] = .0f;
+			}
+			br0.fill_color[2] = .0f;
+			drawText(CANVAS_WIDTH/2 - 70, CANVAS_HEIGHT/2 + 20, 50, "RETRY", br0);
+
+			if (retry_choice == BACK_TO_MENU) {
+				br0.fill_color[0] = 1.0f;
+				br0.fill_color[1] = 0.84f;
+			}
+			else {
+				br0.fill_color[0] = .0f;
+				br0.fill_color[1] = .0f;
+			}
+			br0.fill_color[2] = .0f;
+			drawText(CANVAS_WIDTH/2 - 70, CANVAS_HEIGHT/2 + 90 , 50, "MAIN MENU", br0);
+
+			// ARROW
+			Brush br1;
+			br1.fill_opacity = 1;
+			br1.outline_opacity = 0;
+			br1.texture = string(_8BIT_ARROW);
+			drawRect(CANVAS_WIDTH/2 - 110, CANVAS_HEIGHT/2 + 5 + arrow_offset, 50, 50, br1);
+
+
 			break;
+		}
+			
 	}
 }
 
@@ -314,6 +364,63 @@ void Game::update()
 				button_timer = BUTTON_DELAY;
 			break;
 		case RETRY:
+
+			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
+				switch (retry_choice) {
+
+				case AGAIN:
+					retry_choice = BACK_TO_MENU;
+					arrow_offset += 70;
+					break;
+				case BACK_TO_MENU:
+					retry_choice = AGAIN;
+					arrow_offset -= 70;
+					break;
+				}
+				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+
+			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
+				switch (retry_choice) {
+
+					case AGAIN:
+						retry_choice = BACK_TO_MENU;
+						arrow_offset += 70;
+						break;
+					case BACK_TO_MENU:
+						retry_choice = AGAIN;
+						arrow_offset -= 70;
+						break;
+				}
+				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+
+			// ENTER
+			if (getKeyState(SCANCODE_RETURN) && button_timer >= BUTTON_DELAY) {
+				switch (retry_choice) {
+				case AGAIN:
+					stopMusic();
+					state = PLAYING;
+					clearCollections();
+					init();
+					break;
+				case BACK_TO_MENU:
+					stopMusic();
+					state = MAIN_MENU;
+					clearCollections();
+					init();
+					break;
+		
+				}
+				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+			button_timer += getDeltaTime();
+			if (button_timer > BUTTON_DELAY)
+				button_timer = BUTTON_DELAY;
+		
 			break;	
 	}
 	
@@ -321,4 +428,23 @@ void Game::update()
 
 void Game::updateTimers() {
 	timer += getDeltaTime();
+}
+
+void Game::clearCollections() {
+
+	while (!player.projectile_list.empty()) {
+		delete player.projectile_list.front();
+		player.projectile_list.pop_front();
+	}
+
+	while (!enemy_list.empty()) {
+		delete enemy_list.front();
+		enemy_list.pop_front();
+	}
+
+	if (pu) {
+		delete pu;
+		pu = nullptr;
+	}
+		
 }

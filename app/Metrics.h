@@ -14,7 +14,7 @@
 
 #define MAX_ENEMY_HP 200
 
-#define BUTTON_DELAY 250.f
+#define BUTTON_DELAY 150.f
 
 #define GRAVITY_PULL 5
 #define DRAGON_BALL_Z_FONT "assets\\fonts\\Saiyan-Sans.ttf"

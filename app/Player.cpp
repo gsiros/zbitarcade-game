@@ -8,6 +8,7 @@ void Player::init()
 {
 	jump = false;
 	attackTimer = 0;
+	active = true;
 	attackSpeed = float(DEFAULT_ATTACK_SPEED);
 	movementSpeed = float(DEFAULT_MOVEMENT_SPEED);
 }
@@ -43,6 +44,8 @@ void Player::update()
 
 	if (hp <= 0) {
 		active = false;
+		game->arrow_offset = 0.f;
+		game->retry_choice = AGAIN;
 		game->state = RETRY;
 		stopMusic();
 		playMusic(string(MARIO_KART_LOSING_SOUND_EFFECT), 0.1f);
