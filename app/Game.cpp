@@ -28,8 +28,12 @@ void Game::init() {
 	prevScore = 0;
 	button_timer = .0f;
 	arrow_offset = 0.f;
-	if (state == MAIN_MENU)
+	if (state == MAIN_MENU) {
+		stopMusic();
 		playSound(string(MAKE_YOUR_SELECTION_NOW), 0.3f);
+		playMusic(string(POKEMON_THEME_SONG), 0.05f);
+	}
+		
 	if (state == PLAYING) {
 		stopMusic();
 		playMusic(string(JOJOS_MAIN_MUSIC), 0.05f);
@@ -44,7 +48,7 @@ void Game::draw()
 	Brush br;
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
-	br.texture = "assets\\background.png";
+	br.texture = string(BACKGROUND_BEACH);
 	drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	switch(state) {

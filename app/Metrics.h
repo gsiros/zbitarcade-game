@@ -31,6 +31,9 @@
 #define POWER_UP_STAR "assets\\Power_up_star"
 #define GOKU_SUPER_SAIYAN "assets\\Goku_super_saiyan"
 #define _8BIT_ARROW "assets\\8bitarrow.png"
+#define BACKGROUND_NIGHT "assets\\background_night.png"
+#define BACKGROUND_BEACH "assets\\background_beach.png"
+#define BACKGROUND_MOUNTAIN "assets\\background_mountain.png"
 
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"
@@ -43,3 +46,4 @@
 #define SUPER_MARIO_STAR_MUSIC "assets\\sounds\\super_mario_star_music.mp3"
 #define MAKE_YOUR_SELECTION_NOW "assets\\sounds\\make_your_selection_now.mp3"
 #define BEEP_SOUND_EFFECT "assets\\sounds\\beep_sound_effect.mp3"
+#define POKEMON_THEME_SONG "assets\\sounds\\pokemon_theme_song.mp3"

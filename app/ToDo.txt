@@ -1,15 +1,14 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
-1) Menu music
-2) different backgrounds
-3) adding about's content to main menu
-4) new main menu background 
-5) O PLAYER NA GINEI POINTER!
+1) find 1 more background (4th)
+2) new main menu background
+3) create "levels" option in main menu
+4) adding about's content to main menu (??)
+5) moving the "MAKE YOUR SELECTION NOW" sound effect to "levels"
+6) O PLAYER NA GINEI POINTER!
 
 ---------------------------- IDEAS ----------------------------------------------
 
 1) platform to jump to (?????????????) (doubt ** 2)
 2) *** goku's customization ***  (doubt)
-
-TEPO
