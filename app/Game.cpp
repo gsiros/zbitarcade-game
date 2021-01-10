@@ -48,7 +48,7 @@ void Game::draw()
 	Brush br;
 	br.fill_opacity = 1;
 	br.outline_opacity = 0;
-	br.texture = string(BACKGROUND_BEACH);
+	br.texture = string(BACKGROUND_NIGHT);
 	drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	switch(state) {

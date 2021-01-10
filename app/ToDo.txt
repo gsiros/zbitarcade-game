@@ -1,12 +1,11 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
-1) find 1 more background (4th)
-2) new main menu background
-3) create "levels" option in main menu
-4) adding about's content to main menu (??)
-5) moving the "MAKE YOUR SELECTION NOW" sound effect to "levels"
-6) O PLAYER NA GINEI POINTER!
+1) new main menu background
+2) create "levels" option in main menu
+3) adding about's content to main menu (??)
+4) moving the "MAKE YOUR SELECTION NOW" sound effect to "levels"
+5) O PLAYER NA GINEI POINTER!
 
 ---------------------------- IDEAS ----------------------------------------------
 
