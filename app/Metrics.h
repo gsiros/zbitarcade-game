@@ -34,6 +34,8 @@
 #define BACKGROUND_NIGHT "assets\\background_night.png"
 #define BACKGROUND_BEACH "assets\\background_beach.png"
 #define BACKGROUND_MOUNTAIN "assets\\background_mountain.png"
+#define MAIN_MENU_BACKGROUND "assets\\Main_menu_background.png"
+#define MAIN_MENU_BACKGROUND2 "assets\\Main_menu_background2.png"
 
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"

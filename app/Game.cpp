@@ -30,9 +30,12 @@ void Game::init() {
 	arrow_offset = 0.f;
 	if (state == MAIN_MENU) {
 		stopMusic();
-		playSound(string(MAKE_YOUR_SELECTION_NOW), 0.3f);
 		playMusic(string(POKEMON_THEME_SONG), 0.05f);
 	}
+
+	if(state == CHOOSE_LEVEL)
+		playSound(string(MAKE_YOUR_SELECTION_NOW), 0.3f);
+
 		
 	if (state == PLAYING) {
 		stopMusic();
@@ -44,15 +47,17 @@ void Game::init() {
 
 void Game::draw()
 {
-	// background
-	Brush br;
-	br.fill_opacity = 1;
-	br.outline_opacity = 0;
-	br.texture = string(BACKGROUND_MOUNTAIN);
-	drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 	switch(state) {
 		case PLAYING: {
+
+			// background
+			Brush br;
+			br.fill_opacity = 1;
+			br.outline_opacity = 0;
+			br.texture = level_asset;
+			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
 			// Score text
 			Brush br0;
 			br0.fill_opacity = 1;
@@ -105,6 +110,13 @@ void Game::draw()
 			break;
 		}
 		case MAIN_MENU: {
+
+			// background
+			Brush br;
+			br.fill_opacity = 1;
+			br.outline_opacity = 0;
+			br.texture = string(MAIN_MENU_BACKGROUND2);
+			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 			Brush br0;
 			br0.fill_opacity = 1;
@@ -165,6 +177,13 @@ void Game::draw()
 		}
 		case RETRY:{
 
+			// background
+			Brush br;
+			br.fill_opacity = 1;
+			br.outline_opacity = 0;
+			br.texture = string(BACKGROUND_MOUNTAIN);
+			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
 			// Draw Entities:
 			for (list<Enemy*>::iterator it = enemy_list.begin(); it != enemy_list.end(); ++it) {
 				(*it)->draw();
@@ -218,6 +237,72 @@ void Game::draw()
 			drawRect(CANVAS_WIDTH/2 - 110, CANVAS_HEIGHT/2 + 5 + arrow_offset, 50, 50, br1);
 
 
+			break;
+		}
+		case CHOOSE_LEVEL: {
+		
+			// background
+			Brush br;
+			br.fill_opacity = 1;
+			br.outline_opacity = 0;
+			br.texture = string(MAIN_MENU_BACKGROUND2);
+			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+			// Choose level text:
+			Brush br0;
+			br0.fill_opacity = 1;
+			br0.outline_opacity = 1;
+			br0.texture = "";
+			br0.fill_color[0] = 1.0f;
+			br0.fill_color[1] = 0.84f;
+			br0.fill_color[2] = .0f;
+			setFont(string(DRAGON_BALL_Z_FONT));
+			drawText(CANVAS_WIDTH / 2 - 210, CANVAS_HEIGHT / 2 - 200, 70, "CHOOSE LEVEL:", br0);
+
+			// Levels
+			Brush br1;
+			br1.fill_opacity = 1;
+			br1.outline_opacity = 1;
+			br1.outline_width = 4.f;
+			if (level_button == BEACH) {
+				br1.outline_color[0] = 1.0f;
+				br1.outline_color[1] = 0.84f;
+			}
+			else {
+				br1.outline_color[0] = .0f;
+				br1.outline_color[1] = .0f;
+			}
+			br1.outline_color[2] = .0f;
+			br1.texture = string(BACKGROUND_BEACH);
+			drawRect(CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 20 - 120, 200, 100, br1);
+			
+			if (level_button == MOUNTAIN) {
+				br1.outline_color[0] = 1.0f;
+				br1.outline_color[1] = 0.84f;
+			}
+			else {
+				br1.outline_color[0] = .0f;
+				br1.outline_color[1] = .0f;
+			}
+			br1.texture = string(BACKGROUND_MOUNTAIN);
+			drawRect(CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 20, 200, 100, br1);
+
+			if (level_button == NIGHT) {
+				br1.outline_color[0] = 1.0f;
+				br1.outline_color[1] = 0.84f;
+			}
+			else {
+				br1.outline_color[0] = .0f;
+				br1.outline_color[1] = .0f;
+			}
+			br1.texture = string(BACKGROUND_NIGHT);
+			drawRect(CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 20 + 120, 200, 100, br1);
+
+			// Arrow
+			br1.fill_opacity = 1;
+			br1.outline_opacity = 0;
+			br1.texture = string(_8BIT_ARROW);
+			drawRect(CANVAS_WIDTH/2 - 150, CANVAS_HEIGHT/2 - 100 + arrow_offset, 50, 50, br1);
 			break;
 		}
 			
@@ -350,7 +435,7 @@ void Game::update()
 			if (getKeyState(SCANCODE_RETURN) && button_timer >= BUTTON_DELAY) {
 				switch (buttonMM) {
 				case PLAY:
-					state = PLAYING;
+					state = CHOOSE_LEVEL;
 					init();
 					break;
 				case ABOUT:
@@ -425,7 +510,75 @@ void Game::update()
 			if (button_timer > BUTTON_DELAY)
 				button_timer = BUTTON_DELAY;
 		
-			break;	
+			break;
+
+		case CHOOSE_LEVEL:
+			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
+				switch (level_button) {
+
+				case BEACH:
+					level_button = MOUNTAIN;
+					arrow_offset += 120;
+					break;
+				case MOUNTAIN:
+					level_button = NIGHT;
+					arrow_offset += 120;
+					break;
+				case NIGHT:
+					level_button = BEACH;
+					arrow_offset -= 240;
+					break;
+				}
+				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+
+			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
+				switch (level_button) {
+
+				case BEACH:
+					level_button = NIGHT;
+					arrow_offset += 240;
+					break;
+				case MOUNTAIN:
+					level_button = BEACH;
+					arrow_offset -= 120;
+					break;
+				case NIGHT:
+					level_button = MOUNTAIN;
+					arrow_offset -= 120;
+					break;
+				}
+				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+
+			// ENTER
+			if (getKeyState(SCANCODE_RETURN) && button_timer >= BUTTON_DELAY) {
+				switch (level_button) {
+				case BEACH:
+					level_asset = string(BACKGROUND_BEACH);
+					state = PLAYING;
+					init();
+					break;
+				case MOUNTAIN:
+					level_asset = string(BACKGROUND_MOUNTAIN);
+					state = PLAYING;
+					init();
+					break;
+				case NIGHT:
+					level_asset = string(BACKGROUND_NIGHT);
+					state = PLAYING;
+					init();
+					break;
+				}
+				playSound(string(BEEP_ENTER_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+			button_timer += getDeltaTime();
+			if (button_timer > BUTTON_DELAY)
+				button_timer = BUTTON_DELAY;
+			break;
 	}
 	
 }
