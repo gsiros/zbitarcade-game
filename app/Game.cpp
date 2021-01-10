@@ -33,8 +33,10 @@ void Game::init() {
 		playMusic(string(POKEMON_THEME_SONG), 0.05f);
 	}
 
-	if(state == CHOOSE_LEVEL)
+	if (state == CHOOSE_LEVEL) {
 		playSound(string(MAKE_YOUR_SELECTION_NOW), 0.3f);
+		level_button = BEACH;
+	}
 
 		
 	if (state == PLAYING) {
@@ -115,7 +117,7 @@ void Game::draw()
 			Brush br;
 			br.fill_opacity = 1;
 			br.outline_opacity = 0;
-			br.texture = string(MAIN_MENU_BACKGROUND2);
+			br.texture = string(MAIN_MENU_BACKGROUND);
 			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 			Brush br0;
@@ -181,7 +183,7 @@ void Game::draw()
 			Brush br;
 			br.fill_opacity = 1;
 			br.outline_opacity = 0;
-			br.texture = string(BACKGROUND_MOUNTAIN);
+			br.texture = level_asset;
 			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 			// Draw Entities:
@@ -245,7 +247,7 @@ void Game::draw()
 			Brush br;
 			br.fill_opacity = 1;
 			br.outline_opacity = 0;
-			br.texture = string(MAIN_MENU_BACKGROUND2);
+			br.texture = string(MAIN_MENU_BACKGROUND);
 			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
 
 			// Choose level text:
@@ -303,6 +305,48 @@ void Game::draw()
 			br1.outline_opacity = 0;
 			br1.texture = string(_8BIT_ARROW);
 			drawRect(CANVAS_WIDTH/2 - 150, CANVAS_HEIGHT/2 - 100 + arrow_offset, 50, 50, br1);
+			break;
+		}
+		case ABOUT_SCREEN: {
+		
+			// background
+			Brush br;
+			br.fill_opacity = 1;
+			br.outline_opacity = 0;
+			br.texture = string(EMPTY_MAIN_MENU_BACKGROUND);
+			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+			br.texture = string(HOW_TO);
+			drawRect((CANVAS_WIDTH) / 2, (CANVAS_HEIGHT) / 2, CANVAS_WIDTH, CANVAS_HEIGHT, br);
+
+
+			// How2Play text:
+			Brush br0;
+			br0.fill_opacity = 1;
+			br0.outline_opacity = 1;
+			br0.texture = "";
+			br0.fill_color[0] = 1.0f;
+			br0.fill_color[1] = 0.84f;
+			br0.fill_color[2] = .0f;
+			setFont(string(DRAGON_BALL_Z_FONT));
+			drawText(CANVAS_WIDTH / 2 - 110, CANVAS_HEIGHT / 2 - 250, 50, "How to play", br0);
+
+
+			
+			// Back button
+			br0.fill_color[0] = 1.0f;
+			br0.fill_color[1] = 0.84f;
+			br0.fill_color[2] = .0f;
+			setFont(string(DRAGON_BALL_Z_FONT));
+			drawText(CANVAS_WIDTH / 2 - 50, CANVAS_HEIGHT - 10, 50,"BACK", br0);
+
+
+			// ARROW
+			Brush br1;
+			br1.fill_opacity = 1;
+			br1.outline_opacity = 0;
+			br1.texture = string(_8BIT_ARROW);
+			drawRect(CANVAS_WIDTH/2 - 90, CANVAS_HEIGHT - 25 + arrow_offset, 50, 50, br1);
 			break;
 		}
 			
@@ -391,9 +435,9 @@ void Game::update()
 			break;
 		case MAIN_MENU:
 
-			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
+			if(getKeyState(SCANCODE_S) && button_timer >= BUTTON_DELAY){
 				switch (buttonMM) {
-
+				
 				case PLAY:
 					buttonMM = ABOUT;
 					arrow_offset += 70;
@@ -411,7 +455,7 @@ void Game::update()
 				button_timer = 0.f;
 			}
 
-			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
+			if(getKeyState(SCANCODE_W) && button_timer >=BUTTON_DELAY) {
 				switch (buttonMM) {
 
 				case PLAY:
@@ -439,6 +483,8 @@ void Game::update()
 					init();
 					break;
 				case ABOUT:
+					state = ABOUT_SCREEN;
+					init();
 					break;
 				case EXIT:
 					delete this;
@@ -454,7 +500,7 @@ void Game::update()
 			break;
 		case RETRY:
 
-			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
+			if(getKeyState(SCANCODE_S) && button_timer >= BUTTON_DELAY){
 				switch (retry_choice) {
 
 				case AGAIN:
@@ -470,7 +516,7 @@ void Game::update()
 				button_timer = 0.f;
 			}
 
-			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
+			if(getKeyState(SCANCODE_W) && button_timer >=BUTTON_DELAY) {
 				switch (retry_choice) {
 
 					case AGAIN:
@@ -513,7 +559,7 @@ void Game::update()
 			break;
 
 		case CHOOSE_LEVEL:
-			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
+			if(getKeyState(SCANCODE_S) && button_timer >= BUTTON_DELAY){
 				switch (level_button) {
 
 				case BEACH:
@@ -533,7 +579,7 @@ void Game::update()
 				button_timer = 0.f;
 			}
 
-			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
+			if(getKeyState(SCANCODE_W) && button_timer >=BUTTON_DELAY) {
 				switch (level_button) {
 
 				case BEACH:
@@ -579,7 +625,22 @@ void Game::update()
 			if (button_timer > BUTTON_DELAY)
 				button_timer = BUTTON_DELAY;
 			break;
+		
+		case ABOUT_SCREEN:
+
+			// ENTER
+			if (getKeyState(SCANCODE_RETURN) && button_timer >= BUTTON_DELAY) {
+				state = MAIN_MENU;
+				buttonMM = PLAY;
+				playSound(string(BEEP_ENTER_SOUND_EFFECT), 0.3f);
+				button_timer = 0.f;
+			}
+			button_timer += getDeltaTime();
+			if (button_timer > BUTTON_DELAY)
+				button_timer = BUTTON_DELAY;
+			break;
 	}
+
 	
 }
 

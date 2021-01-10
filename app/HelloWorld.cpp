@@ -30,10 +30,10 @@ int main() {
 	Game* game = new Game();
 	
 	// DO NOT CHANGE TO CANVAS_WIDTH/_HEIGHT
-	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Demo");
+	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "ZBIT ARCADE");
 	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 	setCanvasScaleMode(CANVAS_SCALE_FIT);
-	//setFullScreen(true);
+	setFullScreen(true);
 	setUserData(game);
 	setDrawFunction(draw);
 	setUpdateFunction(update);

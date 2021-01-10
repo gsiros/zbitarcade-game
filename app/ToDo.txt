@@ -1,6 +1,11 @@
 
 ---------------------------- TO DO ----------------------------------------------
 
-1) adding about's content to main menu (??)
 
----------------------------------------------------------------------------------
+1) making the gameplay more ez (isws done)
+2) maybe change the name of HelloWorld.cpp
+3) deleting extra pngs etc
+
+------------------- IDEAS ---------------------------------------------------------
+
+1) Making pause button etc ...

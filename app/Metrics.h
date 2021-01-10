@@ -17,6 +17,7 @@
 #define BUTTON_DELAY 150.f
 
 #define GRAVITY_PULL 5
+#define ROBOTO_REGULAR_FONT "assets\\fonts\\Roboto-Regular.ttf"
 #define DRAGON_BALL_Z_FONT "assets\\fonts\\Saiyan-Sans.ttf"
 #define GRINCHED_FONT "assets\\fonts\\grinched-font.ttf"
 #define POCOYO_TV_FONT "assets\\fonts\\POCOYO_TV.ttf"
@@ -36,6 +37,9 @@
 #define BACKGROUND_MOUNTAIN "assets\\background_mountain.png"
 #define MAIN_MENU_BACKGROUND "assets\\Main_menu_background.png"
 #define MAIN_MENU_BACKGROUND2 "assets\\Main_menu_background2.png"
+#define HOW_TO "assets\\how_to.png"
+#define EMPTY_MAIN_MENU_BACKGROUND "assets\\Empty_main_menu_background.png"
+#define HOW_TO_LOW_Q "assets\\how_to_low_q.png"
 
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"

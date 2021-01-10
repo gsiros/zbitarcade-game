@@ -13,7 +13,7 @@ using namespace std;
 using namespace graphics;
 
 enum GAMESTATE {
-	MAIN_MENU, PLAYING, RETRY, CHOOSE_LEVEL
+	MAIN_MENU, PLAYING, RETRY, CHOOSE_LEVEL, ABOUT_SCREEN
 };
 
 enum MAIN_MENU_BUTTON {
@@ -31,7 +31,7 @@ enum LEVEL_SELECTION {
 class Game : public Entity {
 public:
 
-	int waveVariable = 5;
+	int waveVariable = 8;
 
 	GAMESTATE state = MAIN_MENU;
 	MAIN_MENU_BUTTON buttonMM = PLAY;
