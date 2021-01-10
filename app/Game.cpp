@@ -186,7 +186,7 @@ void Game::draw()
 			br0.fill_color[1] = .0f;
 			br0.fill_color[2] = .0f;
 			setFont(string(DRAGON_BALL_Z_FONT));
-			drawText(CANVAS_WIDTH / 2 - 180, CANVAS_HEIGHT / 2 - 130, 100, "YOU DIED", br0);
+			drawText(CANVAS_WIDTH / 2 - 180, CANVAS_HEIGHT / 2 - 130, 100, "YOU LOST", br0);
 
 			if (retry_choice == AGAIN) {
 				br0.fill_color[0] = 1.0f;
@@ -360,7 +360,7 @@ void Game::update()
 					destroyWindow();
 					break;
 				}
-				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				playSound(string(BEEP_ENTER_SOUND_EFFECT), 0.3f);
 				button_timer = 0.f;
 			}
 			button_timer += getDeltaTime();
@@ -418,7 +418,7 @@ void Game::update()
 					break;
 		
 				}
-				playSound(string(BEEP_SOUND_EFFECT), 0.3f);
+				playSound(string(BEEP_ENTER_SOUND_EFFECT), 0.3f);
 				button_timer = 0.f;
 			}
 			button_timer += getDeltaTime();

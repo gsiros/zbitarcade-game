@@ -46,4 +46,5 @@
 #define SUPER_MARIO_STAR_MUSIC "assets\\sounds\\super_mario_star_music.mp3"
 #define MAKE_YOUR_SELECTION_NOW "assets\\sounds\\make_your_selection_now.mp3"
 #define BEEP_SOUND_EFFECT "assets\\sounds\\beep_sound_effect.mp3"
+#define BEEP_ENTER_SOUND_EFFECT "assets\\sounds\\beep_enter_sound_effect.mp3"
 #define POKEMON_THEME_SONG "assets\\sounds\\pokemon_theme_song.mp3"
