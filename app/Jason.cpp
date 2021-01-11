@@ -28,12 +28,6 @@ void Jason::draw()
 	br.fill_color[1] = 0.f;
 	br.fill_color[2] = 0.f;
 	br.texture = "";
-	//br.fill_secondary_color[0] = 0.2f;
-	//br.fill_secondary_color[1] = 0.2f;
-	//br.fill_secondary_color[2] = 1.0f;
-	//br.gradient = true;
-	//br.gradient_dir_u = 1.0f;
-	//br.gradient_dir_v = 0.0f;
 	drawRect(position.getX() - (((100 - hp) / 100) * 100 / 2), position.getY() - height / 2 - 20, (hp / 100) * 100, 10, br);
 
 	//Outer rectangle
@@ -83,7 +77,6 @@ void Jason::chasePlayer(Player* p) {
 }
 
 void Jason::attack() {
-	// If timer >= 1500 && distance between player.poisition and enemy.position < fixed_number then attack
 	Game* g = reinterpret_cast<Game*>(getUserData());
 
 	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 61) {

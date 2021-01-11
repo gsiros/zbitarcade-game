@@ -61,15 +61,6 @@ void Player::update()
 		velocity = velocity + game->gravity * (getDeltaTime()/70.f);
 	}
 
-	// If 'S' is pressed:
-	/*if (getKeyState(SCANCODE_S)) {
-		if (position.getY() + height / 2 < CANVAS_HEIGHT)
-			position.setY(position.getY() + 2);
-		else {
-			position.setY(CANVAS_HEIGHT - height / 2);
-		}
-	}*/
-
 	// If 'A' is pressed:
 	if (getKeyState(SCANCODE_A)) {
 		if (position.getX() - width / 3 > 0) {

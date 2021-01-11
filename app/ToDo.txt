@@ -1,20 +1,6 @@
 
----------------------------- TO DO ----------------------------------------------
+------------------------------------------- TO DO ----------------------------------------------
 
-
-1) making the gameplay more ez (isws done)
-2) maybe change the name of HelloWorld.cpp
-3) deleting extra pngs etc
-
-
-------------------- IDEAS ---------------------------------------------------------
-
-1) Making pause button etc ...
-
-
-
------------------- COMMENTS ------------------------------
-
-1) anti gia w s --> up down
-2) poly duskolo
-3) goku --> mikro sumpiesmenos
+1) deleting extra pngs etc
+2) upload
+3) delete todo.txt :DDD

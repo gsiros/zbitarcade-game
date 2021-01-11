@@ -77,7 +77,7 @@ void Piccolo::chasePlayer(Player* p) {
 }
 
 void Piccolo::attack() {
-	// If timer >= 1500 && distance between player.poisition and enemy.position < fixed_number then attack
+
 	Game * g = reinterpret_cast<Game *>(getUserData());
 	
 	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 61) {

@@ -1,8 +1,7 @@
 #pragma once
 class Entity {
 	/*
-	
-		@gsiros:
+
 		This is an abstract class for entities that live as the program runs.
 		These can be the Game, Player, Enemy, Projectile, etc.
 	

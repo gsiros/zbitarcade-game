@@ -38,8 +38,7 @@ void PowerUp::update() {
 
 void PowerUp::checkIfCaptured(Player* p) {
 	
-	if (sqrt(pow(position.getX() - p->position.getX(),2) + pow(position.getY() - p->position.getY(),2)) < 50) {
-	//if(abs(position.getX() - p->position.getX()) < width/2 + p->getWidth()/2 - 10 && abs(position.getY() - p->position.getY()) < height/2 - 10 + p->getHeight()/2) {
+	if (sqrt(pow(position.getX() - p->position.getX(),2) + pow(position.getY() - p->position.getY(),2)) < 70) {
 		captured = true;
 		p->upgrade(15000, 200, 3, string(GOKU_SUPER_SAIYAN));
 	}

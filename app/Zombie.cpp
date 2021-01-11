@@ -27,12 +27,6 @@ void Zombie::draw()
 	br.fill_color[1] = 0.f;
 	br.fill_color[2] = 0.f;
 	br.texture = "";
-	//br.fill_secondary_color[0] = 0.2f;
-	//br.fill_secondary_color[1] = 0.2f;
-	//br.fill_secondary_color[2] = 1.0f;
-	//br.gradient = true;
-	//br.gradient_dir_u = 1.0f;
-	//br.gradient_dir_v = 0.0f;
 	drawRect(position.getX() - (((150 - hp) / 150) * 100 / 2), position.getY() - height / 2 - 20, (hp / 150) * 100, 10, br);
 
 	//Outer rectangle
@@ -49,11 +43,6 @@ void Zombie::draw()
 void Zombie::update()
 {
 	Game* game = reinterpret_cast<Game*>(getUserData());
-	
-	//int probability = rand() % 50;
-
-	//if (probability == 2)
-		//playSound(string(MINECRAFT_BRUH_SOUND_EFFECT), 0.1f);
 
 	chasePlayer(&game->player);
 	attack();
@@ -84,12 +73,11 @@ void Zombie::chasePlayer(Player* p) {
 
 	if (p->position.getX() - 40 < this->position.getX()) {
 		this->position.setX(this->position.getX() - (getDeltaTime() / 17.f));
-
 	}
 }
 
 void Zombie::attack() {
-	// If timer >= 1500 && distance between player.poisition and enemy.position < fixed_number then attack
+
 	Game* g = reinterpret_cast<Game*>(getUserData());
 
 	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 61) {

@@ -207,7 +207,7 @@ void Game::draw()
 			br0.fill_color[1] = .0f;
 			br0.fill_color[2] = .0f;
 			setFont(string(DRAGON_BALL_Z_FONT));
-			drawText(CANVAS_WIDTH / 2 - 180, CANVAS_HEIGHT / 2 - 130, 100, "YOU LOST", br0);
+			drawText(CANVAS_WIDTH / 2 - 200, CANVAS_HEIGHT / 2 - 130, 100, "YOU LOST", br0);
 
 			if (retry_choice == AGAIN) {
 				br0.fill_color[0] = 1.0f;
