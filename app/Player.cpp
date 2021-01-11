@@ -62,13 +62,13 @@ void Player::update()
 	}
 
 	// If 'S' is pressed:
-	if (getKeyState(SCANCODE_S)) {
+	/*if (getKeyState(SCANCODE_S)) {
 		if (position.getY() + height / 2 < CANVAS_HEIGHT)
 			position.setY(position.getY() + 2);
 		else {
 			position.setY(CANVAS_HEIGHT - height / 2);
 		}
-	}
+	}*/
 
 	// If 'A' is pressed:
 	if (getKeyState(SCANCODE_A)) {
@@ -117,13 +117,13 @@ void Player::update()
 		setMovementSpeed(float(DEFAULT_MOVEMENT_SPEED));
 		setAttackSpeed(float(DEFAULT_ATTACK_SPEED));
 		if (this->assetFile == this->asset_character_left) {
-			this->asset_character_left = string(GOKU) + "_left.png";
-			this->asset_character_right = string(GOKU) + "_right.png";
+			this->asset_character_left = string(GOKU_NEW) + "_left.png";
+			this->asset_character_right = string(GOKU_NEW) + "_right.png";
 			this->assetFile = asset_character_left;
 		}
 		else {
-			this->asset_character_left = string(GOKU) + "_left.png";
-			this->asset_character_right = string(GOKU) + "_right.png";
+			this->asset_character_left = string(GOKU_NEW) + "_left.png";
+			this->asset_character_right = string(GOKU_NEW) + "_right.png";
 			this->assetFile = asset_character_right;
 		}
 	}

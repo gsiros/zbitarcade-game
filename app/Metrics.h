@@ -40,6 +40,7 @@
 #define HOW_TO "assets\\how_to_final2.png"
 #define EMPTY_MAIN_MENU_BACKGROUND "assets\\Empty_main_menu_background.png"
 #define HOW_TO_LOW_Q "assets\\how_to_low_q.png"
+#define GOKU_NEW "assets\\Goku_new"
 
 
 #define MINECRAFT_SOUND_OUH "assets\\sounds\\minecraft_sound_ouh.mp3"

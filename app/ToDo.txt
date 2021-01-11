@@ -6,6 +6,15 @@
 2) maybe change the name of HelloWorld.cpp
 3) deleting extra pngs etc
 
+
 ------------------- IDEAS ---------------------------------------------------------
 
 1) Making pause button etc ...
+
+
+
+------------------ COMMENTS ------------------------------
+
+1) anti gia w s --> up down
+2) poly duskolo
+3) goku --> mikro sumpiesmenos

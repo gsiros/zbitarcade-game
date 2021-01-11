@@ -80,7 +80,7 @@ void Goomba::attack() {
 	// If timer >= 1500 && distance between player.poisition and enemy.position < fixed_number then attack
 	Game* g = reinterpret_cast<Game*>(getUserData());
 
-	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 61) {
+	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 70) {
 		playSound(string(MINECRAFT_SOUND_OUH), 0.1f);
 		g->player.setHp(g->player.getHp() - 5);
 		attackTimer = 0;

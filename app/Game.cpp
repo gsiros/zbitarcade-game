@@ -43,7 +43,7 @@ void Game::init() {
 		stopMusic();
 		playMusic(string(JOJOS_MAIN_MUSIC), 0.05f);
 	}
-	player = Player(CHARACTER_WIDTH, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU));
+	player = Player(CHARACTER_WIDTH + 20, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW));
 	player.init();
 }
 
@@ -435,7 +435,7 @@ void Game::update()
 			break;
 		case MAIN_MENU:
 
-			if(getKeyState(SCANCODE_S) && button_timer >= BUTTON_DELAY){
+			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
 				switch (buttonMM) {
 				
 				case PLAY:
@@ -455,7 +455,7 @@ void Game::update()
 				button_timer = 0.f;
 			}
 
-			if(getKeyState(SCANCODE_W) && button_timer >=BUTTON_DELAY) {
+			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
 				switch (buttonMM) {
 
 				case PLAY:
@@ -500,7 +500,7 @@ void Game::update()
 			break;
 		case RETRY:
 
-			if(getKeyState(SCANCODE_S) && button_timer >= BUTTON_DELAY){
+			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
 				switch (retry_choice) {
 
 				case AGAIN:
@@ -516,7 +516,7 @@ void Game::update()
 				button_timer = 0.f;
 			}
 
-			if(getKeyState(SCANCODE_W) && button_timer >=BUTTON_DELAY) {
+			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
 				switch (retry_choice) {
 
 					case AGAIN:
@@ -559,7 +559,7 @@ void Game::update()
 			break;
 
 		case CHOOSE_LEVEL:
-			if(getKeyState(SCANCODE_S) && button_timer >= BUTTON_DELAY){
+			if(getKeyState(SCANCODE_DOWN) && button_timer >= BUTTON_DELAY){
 				switch (level_button) {
 
 				case BEACH:
@@ -579,7 +579,7 @@ void Game::update()
 				button_timer = 0.f;
 			}
 
-			if(getKeyState(SCANCODE_W) && button_timer >=BUTTON_DELAY) {
+			if(getKeyState(SCANCODE_UP) && button_timer >=BUTTON_DELAY) {
 				switch (level_button) {
 
 				case BEACH:
