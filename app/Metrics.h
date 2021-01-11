@@ -17,14 +17,13 @@
 #define BUTTON_DELAY 150.f
 
 #define GRAVITY_PULL 5
-#define ROBOTO_REGULAR_FONT "assets\\fonts\\Roboto-Regular.ttf"
+
 #define DRAGON_BALL_Z_FONT "assets\\fonts\\Saiyan-Sans.ttf"
-#define GRINCHED_FONT "assets\\fonts\\grinched-font.ttf"
 #define POCOYO_TV_FONT "assets\\fonts\\POCOYO_TV.ttf"
+
 #define GOKU_PROFILE_PIC "assets\\PlayerPic.png"
 #define PLAYER_UI "assets\\PlayerUI.png"
 #define PICCOLO "assets\\Piccolo"
-#define GOKU "assets\\Goku"
 #define ZOMBIE "assets\\Zombie"
 #define JASON "assets\\Jason"
 #define GOOMBA "assets\\Goomba"
@@ -36,10 +35,8 @@
 #define BACKGROUND_BEACH "assets\\background_beach.png"
 #define BACKGROUND_MOUNTAIN "assets\\background_mountain.png"
 #define MAIN_MENU_BACKGROUND "assets\\Main_menu_background.png"
-#define MAIN_MENU_BACKGROUND2 "assets\\Main_menu_background2.png"
 #define HOW_TO "assets\\how_to_final2.png"
 #define EMPTY_MAIN_MENU_BACKGROUND "assets\\Empty_main_menu_background.png"
-#define HOW_TO_LOW_Q "assets\\how_to_low_q.png"
 #define GOKU_NEW "assets\\Goku_new"
 
 
@@ -48,7 +45,6 @@
 #define JOJOS_MAIN_MUSIC "assets\\sounds\\jojos_main_sound.mp3"
 #define GOOMBAS_JUMP_SOUND "assets\\sounds\\Goomba_jump_sound_effect.mp3"
 #define STABBING_SOUND_EFFECT "assets\\sounds\\stabbing_sound_effect.mp3"
-#define MINECRAFT_BRUH_SOUND_EFFECT "assets\\sounds\\minecraft_bruh_sound_effect.mp3"
 #define MARIO_KART_LOSING_SOUND_EFFECT "assets\\sounds\\mario_kart_losing_sound_effect.mp3"
 #define SUPER_MARIO_STAR_MUSIC "assets\\sounds\\super_mario_star_music.mp3"
 #define MAKE_YOUR_SELECTION_NOW "assets\\sounds\\make_your_selection_now.mp3"
