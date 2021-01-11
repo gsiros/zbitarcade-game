@@ -27,12 +27,7 @@ void Piccolo::draw()
 	br.fill_color[1] = 0.f;
 	br.fill_color[2] = 0.f;
 	br.texture = "";
-	//br.fill_secondary_color[0] = 0.2f;
-	//br.fill_secondary_color[1] = 0.2f;
-	//br.fill_secondary_color[2] = 1.0f;
-	//br.gradient = true;
-	//br.gradient_dir_u = 1.0f;
-	//br.gradient_dir_v = 0.0f;
+	
 	drawRect(position.getX() - (((100-hp)/100)*100/2), position.getY() - height / 2 - 20, (hp/100)*100, 10, br);
 
 	//Outer rectangle
@@ -69,14 +64,14 @@ void Piccolo::chasePlayer(Player* p) {
 		this->setAssetFileMoveRight();
 
 	if (p->position.getX() + 40 > this->position.getX()) {
-		this->position.setX(this->position.getX() + (getDeltaTime()/10.f));
+		this->position.setX(this->position.getX() + (getDeltaTime()/14.f));
 	}
 
 	if(p->position.getX() < this->position.getX())
 		this->setAssetFileMoveLeft();
 	
 	if (p->position.getX() - 40 < this->position.getX()) {
-		this->position.setX(this->position.getX() - (getDeltaTime()/10.f));
+		this->position.setX(this->position.getX() - (getDeltaTime()/14.f));
 		
 	}
 }

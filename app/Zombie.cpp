@@ -33,7 +33,7 @@ void Zombie::draw()
 	//br.gradient = true;
 	//br.gradient_dir_u = 1.0f;
 	//br.gradient_dir_v = 0.0f;
-	drawRect(position.getX() - (((200 - hp) / 200) * 100 / 2), position.getY() - height / 2 - 20, (hp / 200) * 100, 10, br);
+	drawRect(position.getX() - (((150 - hp) / 150) * 100 / 2), position.getY() - height / 2 - 20, (hp / 150) * 100, 10, br);
 
 	//Outer rectangle
 	Brush br1;
@@ -76,14 +76,14 @@ void Zombie::chasePlayer(Player* p) {
 		this->setAssetFileMoveRight();
 
 	if (p->position.getX() + 40 > this->position.getX()) {
-		this->position.setX(this->position.getX() + (getDeltaTime() / 15.f));
+		this->position.setX(this->position.getX() + (getDeltaTime() / 17.f));
 	}
 
 	if (p->position.getX() < this->position.getX())
 		this->setAssetFileMoveLeft();
 
 	if (p->position.getX() - 40 < this->position.getX()) {
-		this->position.setX(this->position.getX() - (getDeltaTime() / 15.f));
+		this->position.setX(this->position.getX() - (getDeltaTime() / 17.f));
 
 	}
 }

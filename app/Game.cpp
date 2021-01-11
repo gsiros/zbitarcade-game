@@ -43,7 +43,7 @@ void Game::init() {
 		stopMusic();
 		playMusic(string(JOJOS_MAIN_MUSIC), 0.05f);
 	}
-	player = Player(CHARACTER_WIDTH + 20, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW));
+	player = Player(CHARACTER_WIDTH -10, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW));
 	player.init();
 }
 
@@ -370,7 +370,7 @@ void Game::update()
 					break;
 				case 1:
 					if (rand() % 2 == 1) {
-						enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(ZOMBIE)));
+						enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 150, string(ZOMBIE)));
 						enemy_list.back()->init();
 					}
 					break;

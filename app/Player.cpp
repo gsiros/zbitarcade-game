@@ -126,6 +126,7 @@ void Player::update()
 			this->asset_character_right = string(GOKU_NEW) + "_right.png";
 			this->assetFile = asset_character_right;
 		}
+		this->width -= 15;
 	}
 
 	if (position.getY() + height / 2 >= CANVAS_HEIGHT)
@@ -172,5 +173,6 @@ void Player::upgrade(float duration, float attackSpeed, float movementSpeed, str
 		this->asset_character_right = assetFile + "_right.png";
 		this->assetFile = asset_character_right;
 	}
+	this->width += 15;
 	playSound(string(SUPER_MARIO_STAR_MUSIC), 0.25f);
 }
