@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.h"
 #include <string>
 #include "Entity.h"
 #include "Player.h"
@@ -16,7 +17,7 @@ protected:
 public:
 	Vect position;
 
-	PowerUp(float width, float height, float pos_x, float pos_y, string assetFile);
+	PowerUp(float width, float height, float pos_x, float pos_y, string assetFile, Game* const game);
 	void init() override;
 	void draw() override;
 	void update() override;

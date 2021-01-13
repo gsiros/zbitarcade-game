@@ -1,8 +1,9 @@
 #pragma once
+#include "Game.h"
 #include "Enemy.h"
 class Goomba : public Enemy {
 public:
-	Goomba(float width, float height, float center_x, float center_y, float hp, const string assetFile) : Enemy(width, height, center_x, center_y, hp, assetFile) {}
+	Goomba(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game);
 
 	void init() override;
 	void draw() override;
@@ -10,7 +11,7 @@ public:
 
 	void attack() override;
 
-	void chasePlayer(Player* p) override;
+	void chasePlayer(const Player* const p) override;
 	void checkIfSteppedOn();
 
 };

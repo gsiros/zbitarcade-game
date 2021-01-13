@@ -1,7 +1,8 @@
+#include "Metrics.h"
+
 #include "Player.h"
 #include "Game.h"
 #include "Projectile.h"
-#include "Metrics.h"
 
 
 void Player::init()
@@ -32,7 +33,7 @@ void Player::draw()
 
 void Player::update()
 {
-	Game* game = reinterpret_cast<Game*> (getUserData());
+	//Game* game = reinterpret_cast<Game*> (getUserData());
 
 	// PLAYER UPDATE
 	if (attackTimer < 500) {
@@ -125,18 +126,18 @@ void Player::update()
 		position.setY(CANVAS_HEIGHT - height / 2);
 		jump = false;
 		game->gravity = Vect(0, 5);
-		game->player.velocity = Vect(0, -40);
+		game->player->velocity = Vect(0, -40);
 	}
 
 }
 
 void Player::attack() {
 	if (assetFile == asset_character_right) {
-		projectile_list.push_back(new Projectile(40, 40, position.getX(), position.getY(), "assets\\Haduken"));
+		projectile_list.push_back(new Projectile(40, 40, position.getX(), position.getY(), "assets\\Haduken", game));
 		projectile_list.back()->setAssetFileMoveRight();
 	}
 	else{
-		projectile_list.push_back(new Projectile(40, 40, position.getX(), position.getY(), "assets\\Haduken"));
+		projectile_list.push_back(new Projectile(40, 40, position.getX(), position.getY(), "assets\\Haduken", game));
 		projectile_list.back()->setAssetFileMoveLeft();
 	}
 }

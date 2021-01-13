@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.h"
 class Entity {
 	/*
 
@@ -7,8 +8,12 @@ class Entity {
 	
 	*/
 protected:
+	class Game* const game;
 	bool active = true;
 public:
+
+	Entity(Game* const game);
+
 	virtual void init() = 0;
 	virtual void draw() = 0;
 	virtual void update() = 0;

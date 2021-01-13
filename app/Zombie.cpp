@@ -1,7 +1,7 @@
 #include "graphics.h"
 #include "Metrics.h"
-#include "Game.h"
 #include "Zombie.h"
+#include "Game.h"
 
 using namespace graphics;
 
@@ -42,9 +42,7 @@ void Zombie::draw()
 
 void Zombie::update()
 {
-	Game* game = reinterpret_cast<Game*>(getUserData());
-
-	chasePlayer(&game->player);
+	chasePlayer(game->player);
 	attack();
 	
 	if (hp <= 0.f) {
@@ -59,7 +57,7 @@ void Zombie::update()
 	}
 }
 
-void Zombie::chasePlayer(Player* p) {
+void Zombie::chasePlayer(const Player* const p) {
 
 	if (p->position.getX() > this->position.getX())
 		this->setAssetFileMoveRight();
@@ -78,11 +76,9 @@ void Zombie::chasePlayer(Player* p) {
 
 void Zombie::attack() {
 
-	Game* g = reinterpret_cast<Game*>(getUserData());
-
-	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 61) {
+	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - game->player->position.getX(), 2) + pow(position.getY() - game->player->position.getY(), 2))) < 61) {
 		playSound(string(MINECRAFT_SOUND_OUH), 0.1f);
-		g->player.setHp(g->player.getHp() - 5);
+		game->player->setHp(game->player->getHp() - 5);
 		attackTimer = 0;
 	}
 }

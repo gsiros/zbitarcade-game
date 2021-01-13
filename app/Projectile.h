@@ -1,8 +1,10 @@
 #pragma once
+#include "Game.h"
 #include <string>
 #include "Vect.h"
 #include "Character.h"
 #include <list>
+#include "Entity.h"
 using namespace std;
 
 class Projectile : public Entity {
@@ -15,8 +17,8 @@ protected:
 public:
 	Vect position, velocity;
 
-	Projectile(float width, float height, float center_x, float center_y, const string assetFile);
-	Projectile(const Projectile& p);
+	Projectile(float width, float height, float center_x, float center_y, const string assetFile, Game* const game);
+	//Projectile(const Projectile& p);
 
 	void init() override;
 	void draw() override;

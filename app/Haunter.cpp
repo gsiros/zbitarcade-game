@@ -1,7 +1,8 @@
 #include "Haunter.h"
+#include "Game.h"
 #include "graphics.h"
 #include "Metrics.h"
-#include "Game.h"
+
 #include "Piccolo.h"
 
 using namespace graphics;
@@ -43,8 +44,8 @@ void Haunter::draw()
 
 void Haunter::update()
 {
-	Game* game = reinterpret_cast<Game*>(getUserData());
-	chasePlayer(&game->player);
+	//Game* game = reinterpret_cast<Game*>(getUserData());
+	chasePlayer(game->player);
 	attack();
 	if (hp <= 0.f) {
 		active = false;
@@ -58,7 +59,7 @@ void Haunter::update()
 	}
 }
 
-void Haunter::chasePlayer(Player* p) {
+void Haunter::chasePlayer(const Player* const p) {
 
 	if (p->position.getX() > this->position.getX())
 		this->setAssetFileMoveRight();
@@ -79,11 +80,9 @@ void Haunter::chasePlayer(Player* p) {
 
 void Haunter::attack() {
 
-	Game* g = reinterpret_cast<Game*>(getUserData());
-
-	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 75) {
+	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - game->player->position.getX(), 2) + pow(position.getY() - game->player->position.getY(), 2))) < 75) {
 		playSound(string(MINECRAFT_SOUND_OUH), 0.1f);
-		g->player.setHp(g->player.getHp() - 5);
+		game->player->setHp(game->player->getHp() - 5);
 		attackTimer = 0;
 	}
 }
