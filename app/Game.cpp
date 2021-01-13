@@ -46,6 +46,8 @@ void Game::init() {
 	player = new Player(CHARACTER_WIDTH -10, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW), this);
 	player->init();
 
+	if (pu)
+		delete pu;
 	pu = nullptr;
 }
 
