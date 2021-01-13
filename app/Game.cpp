@@ -454,7 +454,7 @@ void Game::update()
 					}
 					else {
 						// Spawn power up:
-						if (pu == nullptr && !player->getUpgraded() ) { //&& rand() % 9 == 4
+						if (pu == nullptr && !player->getUpgraded() && rand() % 9 == 4) {
 							pu = new PowerUp(50, 50, (*it)->position.getX(), (*it)->position.getY() - 20, string(POWER_UP_STAR), this);
 							pu->init();
 						}
