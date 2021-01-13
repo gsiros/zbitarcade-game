@@ -1,15 +1,11 @@
+#pragma once
 #include "Game.h"
-#include "Haunter.h"
 #include "Piccolo.h"
-#include "Metrics.h"
-#include "graphics.h"
-#include <math.h>
-#include <random>
-#include "Zombie.h"
 #include "Goomba.h"
 #include "Jason.h"
+#include "Haunter.h"
+#include "Zombie.h"
 #include "PowerUp.h"
-#include "Player.h"
 
 using namespace graphics;
 
@@ -19,6 +15,7 @@ Game::Game()
 
 Game::~Game() {
 	clearCollections();
+	delete player;
 }
 
 void Game::init() {
@@ -43,8 +40,13 @@ void Game::init() {
 		stopMusic();
 		playMusic(string(JOJOS_MAIN_MUSIC), 0.05f);
 	}
-	player = Player(CHARACTER_WIDTH -10, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW));
-	player.init();
+
+	if (player)
+		delete player;
+	player = new Player(CHARACTER_WIDTH -10, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW), this);
+	player->init();
+
+	pu = nullptr;
 }
 
 void Game::draw()
@@ -79,7 +81,7 @@ void Game::draw()
 			drawRect(65, 57, 75, 75, br1);
 
 			// UI Hp bar
-			float player_hp = (player.getHp() > 0) ? player.getHp() : 0;
+			float player_hp = (player->getHp() > 0) ? player->getHp() : 0;
 			Brush br3;
 			br3.fill_opacity = 1;
 			br3.fill_color[0] = 0.f + (200 - player_hp) / 200; // RED
@@ -97,13 +99,61 @@ void Game::draw()
 			br2.texture = string(PLAYER_UI);
 			drawRect(180, 60, 360, 100, br2);
 
+			// PowerUp time left
+			
+			br0.fill_color[0] = .0f;
+			br0.fill_color[1] = .0f;
+			br0.fill_color[2] = .0f;
+			drawText(CANVAS_WIDTH - 220, 45, 22, "PowerUp", br0);
+			
+			if (player->getUpgraded()) {
+				//drawText(CANVAS_WIDTH - 260, 70, 22, "Time Left: "+to_string((int) player->getUpgradeDuration()/1000), br0);
+				
+				br2.texture = string(POWER_UP_STAR) + ".png";
+				drawRect(CANVAS_WIDTH - 60, 55, 50, 50, br2);
+
+				
+				br2.texture = "";
+
+				br2.fill_opacity = 1.f;
+				br2.outline_opacity = 0.f;
+				br2.fill_color[0] = 1.0f;
+				br2.fill_color[1] = 0.84f;
+				br2.fill_color[2] = .0f;
+				drawRect(CANVAS_WIDTH - 211 + (((15000 - player->getUpgradeDuration()) / 15000) * 205 / 2), 75, (player->getUpgradeDuration()/15000) * 205, 27, br2);
+
+				br2.fill_opacity = .0f;
+				br2.outline_opacity = 1;
+				br2.outline_width = 4;
+				br2.fill_color[0] = .0f;
+				br2.fill_color[1] = .0f;
+				br2.fill_color[2] = .0f;
+				br2.outline_color[0] = .0f;
+				br2.outline_color[1] = .0f;
+				br2.outline_color[2] = .0f;
+				drawRect(CANVAS_WIDTH - 210, 75, 205, 29, br2);
+
+			}
+
+			
+			// Draw Power Up cage:
+			br2.fill_opacity = 0.f;
+			br2.outline_opacity = 1;
+			br2.outline_width = 6.f;
+			br2.outline_color[0] = .0f;
+			br2.outline_color[1] = .0f;
+			br2.outline_color[2] = .0f;
+			br2.texture = "";
+			drawRect(CANVAS_WIDTH - 60, 55, 68, 68, br2);
+
+
 			// Draw Entities:
 			for (list<Enemy*>::iterator it = enemy_list.begin(); it != enemy_list.end(); ++it) {
 				(*it)->draw();
 			}
 			// Draw Player:
-			if (player.getActiveStatus()) {
-				player.draw();
+			if (player->getActiveStatus()) {
+				player->draw();
 			}
 			// Draw PowerUp:
 			if (pu && !pu->getCaptured()) {
@@ -191,8 +241,8 @@ void Game::draw()
 				(*it)->draw();
 			}
 			// Draw Player:
-			if (player.getActiveStatus()) {
-				player.draw();
+			if (player->getActiveStatus()) {
+				player->draw();
 			}
 			// Draw PowerUp:
 			if (pu && !pu->getCaptured()) {
@@ -365,29 +415,29 @@ void Game::update()
 				switch (choice) {
 
 				case 0:
-					enemy_list.push_back(new Piccolo(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO)));
+					enemy_list.push_back(new Piccolo(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(PICCOLO), this));
 					enemy_list.back()->init();
 					break;
 				case 1:
 					if (rand() % 2 == 1) {
-						enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 150, string(ZOMBIE)));
+						enemy_list.push_back(new Zombie(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 150, string(ZOMBIE), this));
 						enemy_list.back()->init();
 					}
 					break;
 				case 2:
 					if (rand() % 3 == 1) {
-						enemy_list.push_back(new Haunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 - 50, 100, string(HAUNTER)));
+						enemy_list.push_back(new Haunter(80, 80, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2 - 50, 100, string(HAUNTER), this));
 						enemy_list.back()->init();
 					}
 					break;
 				case 3:
 					if (rand() % 2 == 1) {
-						enemy_list.push_back(new Goomba(60, 60, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 25, 25, string(GOOMBA)));
+						enemy_list.push_back(new Goomba(60, 60, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - 25, 25, string(GOOMBA), this));
 						enemy_list.back()->init();
 					}
 					break;
 				case 4:
-					enemy_list.push_back(new Jason(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(JASON)));
+					enemy_list.push_back(new Jason(CHARACTER_WIDTH, CHARACTER_HEIGHT, (rand() % 2) * CANVAS_WIDTH, CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 100, string(JASON), this));
 					enemy_list.back()->init();
 					break;
 				}
@@ -404,8 +454,8 @@ void Game::update()
 					}
 					else {
 						// Spawn power up:
-						if (pu == nullptr && !player.getUpgraded() && rand() % 9 == 4) {
-							pu = new PowerUp(50, 50, (*it)->position.getX(), (*it)->position.getY() - 20, string(POWER_UP_STAR));
+						if (pu == nullptr && !player->getUpgraded() && rand() % 9 == 4) {
+							pu = new PowerUp(50, 50, (*it)->position.getX(), (*it)->position.getY() - 20, string(POWER_UP_STAR), this);
 							pu->init();
 						}
 
@@ -419,7 +469,7 @@ void Game::update()
 					}
 				}
 			}
-			player.update();
+			player->update();
 			if (pu && pu->getActiveStatus()) {
 				pu->update();
 			}
@@ -650,9 +700,9 @@ void Game::updateTimers() {
 
 void Game::clearCollections() {
 
-	while (!player.projectile_list.empty()) {
-		delete player.projectile_list.front();
-		player.projectile_list.pop_front();
+	while (!player->projectile_list.empty()) {
+		delete player->projectile_list.front();
+		player->projectile_list.pop_front();
 	}
 
 	while (!enemy_list.empty()) {

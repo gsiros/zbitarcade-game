@@ -1,4 +1,5 @@
 #pragma once
+#include "Game.h"
 #include <string>
 #include "Vect.h"
 #include "Entity.h"
@@ -17,7 +18,7 @@ protected:
 public:
 	Vect position, velocity;
 
-	Character(float width, float height, float center_x, float center_y, float hp, const string assetFile);
+	Character(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game);
 
 	void init() = 0;
 	void draw() = 0;

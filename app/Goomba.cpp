@@ -1,9 +1,13 @@
 #include "Goomba.h"
+#include "Game.h"
 #include "graphics.h"
 #include "Metrics.h"
-#include "Game.h"
+
 
 using namespace graphics;
+
+Goomba::Goomba(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game) : Enemy(width, height, center_x, center_y, hp, assetFile, game) {}
+
 
 void Goomba::init()
 {
@@ -42,8 +46,7 @@ void Goomba::draw()
 
 void Goomba::update()
 {
-	Game* game = reinterpret_cast<Game*>(getUserData());
-	chasePlayer(&game->player);
+	chasePlayer(game->player);
 	attack();
 	checkIfSteppedOn();
 	if (hp <= 0.f) {
@@ -58,7 +61,7 @@ void Goomba::update()
 	}
 }
 
-void Goomba::chasePlayer(Player* p) {
+void Goomba::chasePlayer(const Player* const p) {
 
 	if (p->position.getX() > this->position.getX())
 		this->setAssetFileMoveRight();
@@ -77,25 +80,23 @@ void Goomba::chasePlayer(Player* p) {
 }
 
 void Goomba::attack() {
-	Game* g = reinterpret_cast<Game*>(getUserData());
 
-	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - g->player.position.getX(), 2) + pow(position.getY() - g->player.position.getY(), 2))) < 70) {
+	if (attackTimer >= 1500 && (sqrt(pow(position.getX() - game->player->position.getX(), 2) + pow(position.getY() - game->player->position.getY(), 2))) < 70) {
 		playSound(string(MINECRAFT_SOUND_OUH), 0.1f);
-		g->player.setHp(g->player.getHp() - 5);
+		game->player->setHp(game->player->getHp() - 5);
 		attackTimer = 0;
 	}
 }
 
 void Goomba::checkIfSteppedOn() {
-	Game* g = reinterpret_cast<Game*>(getUserData());
 
-	if (g->player.getJump() && abs(g->player.position.getX() - position.getX()) < width/2 && (position.getY()) - (g->player.position.getY() + g->player.getHeight()/2) < 4) {
+	if (game->player->getJump() && abs(game->player->position.getX() - position.getX()) < width/2 && (position.getY()) - (game->player->position.getY() + game->player->getHeight()/2) < 4) {
 		
 		playSound(string(GOOMBAS_JUMP_SOUND),0.1f, false);
-		g->player.setJump(true);
-		g->gravity = Vect(0, 5);
-		g->player.velocity = Vect(0, -40);
+		game->player->setJump(true);
+		game->gravity = Vect(0, 5);
+		game->player->velocity = Vect(0, -40);
 		setActiveStatus(false);
-		g->score++;
+		game->score++;
 	}
 }

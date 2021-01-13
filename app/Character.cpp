@@ -1,6 +1,7 @@
 #include "Character.h"
+#include "Game.h"
 
-Character::Character(float width, float height, float center_x, float center_y, float hp, const string assetFile){
+Character::Character(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game) : Entity(game) {
 		position = Vect(center_x, center_y);
 		velocity = Vect(0, -80);
 		this->width = width;

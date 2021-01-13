@@ -1,13 +1,9 @@
 #pragma once
 #include <string>
 #include <list>
-#include "PowerUp.h"
 #include "Metrics.h"
-#include "graphics.h"
-#include "Entity.h"
-#include "Player.h"
-#include "Enemy.h"
 #include "Vect.h"
+#include <graphics.h>
 
 using namespace std;
 using namespace graphics;
@@ -28,7 +24,7 @@ enum LEVEL_SELECTION {
 	BEACH, MOUNTAIN, NIGHT
 };
 
-class Game : public Entity {
+class Game{
 public:
 
 	int waveVariable = 8;
@@ -48,18 +44,18 @@ public:
 
 	string level_asset;
 
-	Player player = Player(CHARACTER_WIDTH -10, CHARACTER_HEIGHT, CANVAS_WIDTH/2,CANVAS_HEIGHT - CHARACTER_HEIGHT / 2, 200, string(GOKU_NEW));
+	class Player* player;
 	Vect gravity = Vect(0, GRAVITY_PULL);
 
-	list<Enemy *> enemy_list;
-	PowerUp* pu = nullptr;
+	list<class Enemy *> enemy_list;
+	class PowerUp* pu = nullptr;
 
 	Game();
 	~Game();
 
-	void init() override;
-	void draw() override;
-	void update() override;
+	void init();
+	void draw();
+	void update();
 
 	void updateTimers();
 
