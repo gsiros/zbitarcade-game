@@ -24,7 +24,7 @@ private:
 	float duration;
 public:
 	Player(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game) : Character(width, height, center_x, center_y, hp, assetFile, game) {}
-	
+	~Player();
 	void init() override;
 	void draw() override;
 	void update() override;
