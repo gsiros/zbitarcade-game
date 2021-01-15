@@ -11,6 +11,16 @@ using namespace graphics;
 
 Game::Game()
 {
+	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "ZBIT ARCADE");
+	setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
+	setCanvasScaleMode(CANVAS_SCALE_FIT);
+	setFullScreen(true);
+	setUserData(this);
+	setDrawFunction(bind(&Game::draw, this));
+	setUpdateFunction(bind(&Game::update, this));
+	init();
+	startMessageLoop();
+	destroyWindow();
 }
 
 Game::~Game() {
@@ -539,8 +549,9 @@ void Game::update()
 					init();
 					break;
 				case EXIT:
-					delete this;
 					destroyWindow();
+					delete this;
+					exit(0);
 					break;
 				}
 				playSound(string(BEEP_ENTER_SOUND_EFFECT), 0.3f);

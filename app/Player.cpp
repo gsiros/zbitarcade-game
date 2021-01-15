@@ -4,6 +4,12 @@
 #include "Game.h"
 #include "Projectile.h"
 
+Player::~Player() {
+	while (!projectile_list.empty()) {
+		delete projectile_list.front();
+		projectile_list.pop_front();
+	}
+}
 
 void Player::init()
 {
