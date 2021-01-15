@@ -33,7 +33,6 @@ void Player::draw()
 
 void Player::update()
 {
-	//Game* game = reinterpret_cast<Game*> (getUserData());
 
 	// PLAYER UPDATE
 	if (attackTimer < 500) {

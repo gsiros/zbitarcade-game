@@ -10,7 +10,7 @@ public:
 	void draw() = 0;
 	void update() = 0;
 
-	void attack() = 0;
+	virtual void attack() = 0;
 
 	virtual void chasePlayer(const Player* const p) = 0;
 };
