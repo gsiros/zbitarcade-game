@@ -151,11 +151,11 @@ void Player::setJump(bool status) {
 	this->jump = status;
 }
 
-bool Player::getJump() {
+bool Player::getJump() const {
 	return this->jump;
 }
 
-void Player::upgrade(float duration, float attackSpeed, float movementSpeed, string assetFile) {
+void Player::upgrade(float duration, float attackSpeed, float movementSpeed, const string & assetFile) {
 	this->duration = duration;
 	this->setAttackSpeed(attackSpeed);
 	this->setMovementSpeed(movementSpeed);

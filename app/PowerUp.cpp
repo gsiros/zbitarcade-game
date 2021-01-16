@@ -4,7 +4,7 @@
 
 using namespace std;
 
-PowerUp::PowerUp(float width, float height, float pos_x, float pos_y, string assetFile, Game* const game) : Entity(game), width(width), height(height), position(pos_x, pos_y) {
+PowerUp::PowerUp(float width, float height, float pos_x, float pos_y, const string & assetFile, Game* const game) : Entity(game), width(width), height(height), position(pos_x, pos_y) {
 	this->assetFile = assetFile + ".png";
 	this->active = true;
 	this->captured = false;

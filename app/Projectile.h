@@ -17,8 +17,7 @@ protected:
 public:
 	Vect position, velocity;
 
-	Projectile(float width, float height, float center_x, float center_y, const string assetFile, Game* const game);
-	//Projectile(const Projectile& p);
+	Projectile(float width, float height, float center_x, float center_y, const string & assetFile, Game* const game);
 
 	void init() override;
 	void draw() override;
@@ -27,7 +26,7 @@ public:
 	float getWidth() const;
 	float getHeight() const;
 	string getAssetFile() const;
-	void setAssetFile(string const name);
+	void setAssetFile(const string & name);
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();
 	void move();

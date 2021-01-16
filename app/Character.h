@@ -18,7 +18,7 @@ protected:
 public:
 	Vect position, velocity;
 
-	Character(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game);
+	Character(float width, float height, float center_x, float center_y, float hp, const string & assetFile, Game* const game);
 
 	void init() = 0;
 	void draw() = 0;
@@ -31,7 +31,7 @@ public:
 	float getHp() const;
 	string getAssetFile() const;
 	void setHp(float hpPoints);
-	void setAssetFile(string const name);
+	void setAssetFile(const string & name);
 	void setAssetFileMoveRight();
 	void setAssetFileMoveLeft();	
 

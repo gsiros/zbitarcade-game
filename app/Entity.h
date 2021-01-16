@@ -18,6 +18,6 @@ public:
 	virtual void draw() = 0;
 	virtual void update() = 0;
 
-	inline bool getActiveStatus() {return active;}
+	inline bool getActiveStatus() const {return active;}
 	void setActiveStatus(bool status) {active = status;}
 };

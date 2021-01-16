@@ -23,7 +23,7 @@ private:
 	float movementSpeed;
 	float duration;
 public:
-	Player(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game) : Character(width, height, center_x, center_y, hp, assetFile, game) {}
+	Player(float width, float height, float center_x, float center_y, float hp, const string & assetFile, Game* const game) : Character(width, height, center_x, center_y, hp, assetFile, game) {}
 	~Player();
 	void init() override;
 	void draw() override;
@@ -33,8 +33,8 @@ public:
 	list<class Projectile*> projectile_list;
 
 	void setJump(bool status);
-	bool getJump();
-	void upgrade(float duration, float attackSpeed, float movementSpeed, string assetFile);
+	bool getJump() const;
+	void upgrade(float duration, float attackSpeed, float movementSpeed, const string & assetFile);
 	
 	inline float getAttackSpeed() const {
 		return this->attackSpeed;

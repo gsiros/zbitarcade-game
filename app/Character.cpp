@@ -1,7 +1,7 @@
 #include "Character.h"
 #include "Game.h"
 
-Character::Character(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game) : Entity(game) {
+Character::Character(float width, float height, float center_x, float center_y, float hp, const string & assetFile, Game* const game) : Entity(game) {
 		position = Vect(center_x, center_y);
 		velocity = Vect(0, -80);
 		this->width = width;
@@ -28,7 +28,7 @@ string Character::getAssetFile() const {
 	return assetFile;
 }
 
-void Character::setAssetFile(string const name) {
+void Character::setAssetFile(const string & name) {
 	assetFile = name;
 }
 

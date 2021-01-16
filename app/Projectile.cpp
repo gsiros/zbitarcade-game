@@ -8,7 +8,7 @@
 using namespace std;
 using namespace graphics;
 
-Projectile::Projectile(float width, float height, float center_x, float center_y, const string assetFile, Game* const game) : Entity(game){
+Projectile::Projectile(float width, float height, float center_x, float center_y, const string & assetFile, Game* const game) : Entity(game){
 	this->width = width;
 	this->height = height;
 	this->position = Vect(center_x, center_y);
@@ -16,15 +16,6 @@ Projectile::Projectile(float width, float height, float center_x, float center_y
 	this->asset_projectile_right = assetFile + "_right.png";
 	this->assetFile = asset_projectile_right;
 }
-
-/*Projectile::Projectile(const Projectile& p) {
-	this->width = int(p.width);
-	this->height = int(p.height);
-	this->position = Vect(int(p.position.getX()), int(p.position.getY()));
-	this->asset_projectile_left = string(p.asset_projectile_left);
-	this->asset_projectile_right = string(p.asset_projectile_right);
-	this->assetFile = string(p.assetFile);
-}*/
 
 void Projectile::init()
 {
@@ -59,7 +50,7 @@ string Projectile::getAssetFile() const {
 	return this->assetFile;
 }
 
-void Projectile::setAssetFile(string const name) {
+void Projectile::setAssetFile(const string & name) {
 	this->assetFile = name;
 }
 
@@ -88,7 +79,6 @@ void Projectile::keepInBounds()
 }
 
 void Projectile::checkCollisionWithEnemy() {
-	//list<Enemy*> enemies = reinterpret_cast<Game*>(getUserData())->enemy_list;
 	for (list<Enemy*>::iterator it = game->enemy_list.begin(); it != game->enemy_list.end(); ++it) {
 		// Check if collided with enemy:
 		if ((abs((*it)->position.getX() - position.getX()) < 30) && (abs((*it)->position.getY() - position.getY()) < (*it)->getHeight()/2)) {

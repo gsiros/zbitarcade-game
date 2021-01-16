@@ -4,7 +4,7 @@
 
 class Enemy : public Character {
 public:
-	Enemy(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game);
+	Enemy(float width, float height, float center_x, float center_y, float hp, const string & assetFile, Game* const game);
 
 	void init() = 0;
 	void draw() = 0;

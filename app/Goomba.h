@@ -3,7 +3,7 @@
 #include "Enemy.h"
 class Goomba : public Enemy {
 public:
-	Goomba(float width, float height, float center_x, float center_y, float hp, const string assetFile, Game* const game);
+	Goomba(float width, float height, float center_x, float center_y, float hp, const string & assetFile, Game* const game);
 
 	void init() override;
 	void draw() override;
